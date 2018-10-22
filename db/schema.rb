@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181022205628) do
+ActiveRecord::Schema.define(version: 20181022211648) do
 
   create_table "characters", force: :cascade do |t|
     t.string  "name"
     t.string  "decription"
-    t.boolean "guilty",     default: false
+    t.boolean "guilty",              default: false
+    t.string  "family_relationship"
   end
 
   create_table "locations", force: :cascade do |t|
