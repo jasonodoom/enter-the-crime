@@ -1,3 +1,3 @@
 class Player < ActiveRecord::Base
-  has_many :locations
+  has_many :interrogations
 end

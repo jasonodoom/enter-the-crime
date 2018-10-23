@@ -10,20 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181022211648) do
+ActiveRecord::Schema.define(version: 20181022195420) do
 
-  create_table "characters", force: :cascade do |t|
-    t.string  "name"
-    t.string  "decription"
-    t.boolean "guilty",              default: false
-    t.string  "family_relationship"
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string  "name"
-    t.boolean "empty"
-    t.integer "played_id"
-    t.integer "character_id"
+  create_table "interrogations", force: :cascade do |t|
+    t.string "player_id"
+    t.string "suspect_id"
+    t.string "room"
   end
 
   create_table "players", force: :cascade do |t|
@@ -31,6 +23,13 @@ ActiveRecord::Schema.define(version: 20181022211648) do
     t.integer "age"
     t.string  "occupation",  default: "Detective"
     t.string  "description", default: "Just a stranger."
+  end
+
+  create_table "suspects", force: :cascade do |t|
+    t.string  "name"
+    t.string  "family_relationship"
+    t.string  "decription"
+    t.boolean "guilty",              default: false
   end
 
 end
