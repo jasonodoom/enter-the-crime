@@ -24,6 +24,7 @@ def start_game
   loader
   puts "What is your name?"
   player_name = gets.chomp
+  puts 'clear'
 end
 
 def intro

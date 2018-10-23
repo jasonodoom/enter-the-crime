@@ -3,7 +3,7 @@ class CreateSuspects < ActiveRecord::Migration[5.0]
     create_table :suspects do |t|
       t.string :name
       t.string :family_relationship
-      t.string :decription
+      t.string :description
       t.boolean :guilty, default: false
     end
   end

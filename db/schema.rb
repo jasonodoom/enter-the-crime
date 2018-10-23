@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20181022195420) do
   create_table "suspects", force: :cascade do |t|
     t.string  "name"
     t.string  "family_relationship"
-    t.string  "decription"
+    t.string  "description"
     t.boolean "guilty",              default: false
   end
 
