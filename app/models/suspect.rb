@@ -48,8 +48,10 @@ class Suspect < ActiveRecord::Base
         response_six = gets.chomp
         if response_six == "1"
         puts "Nick: I'm fed up with you suspecting me, please leave!"
+        Interrogation.choose_room
         elsif response_six == "2"
         puts "I apologize detective, but I'm tired of your questioning. Leave me to mourn..."
+        Interrogation.choose_room
         end
       end
 
@@ -84,8 +86,10 @@ class Suspect < ActiveRecord::Base
       response_five = gets.chomp
       if response_five == "1"
         puts "Nick: No!! My mother wouldn't do that... ever. Sorry detective, I know nothing else."
+        Interrogation.choose_room
       elsif response_five == "2"
         puts "My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
+        Interrogation.choose_room
       end
 
     end
