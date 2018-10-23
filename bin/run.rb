@@ -31,13 +31,6 @@ def reset
    Player.all.delete_all
 end
 
-def restart
-  puts "INVALID COMMAND"
-  sleep 5;`clear`
-  art
-  menu
-end
-
 def reset_menu
   puts "You chose choice [1]: RESET"
   puts "Continue?[y/n]"
@@ -46,8 +39,11 @@ def reset_menu
      puts "Dropping all Players from the database....."
      reset
    else
-    restart
-  end
+     puts "INVALID COMMAND"
+     sleep 5;`clear`
+     art
+     menu
+   end
 end
 
 def character_profiles
@@ -75,10 +71,6 @@ def menu
    player_profile
  elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
    reset_menu
- elsif user_input == "[5]" || user_input.downcase == "five" || user_input  == "5"
-   puts `clear`
- else
-   restart
  end
 end
 
@@ -91,7 +83,7 @@ def start_game
   puts `clear`
   puts "What is your name?"
   player_name = gets.chomp
-  puts 'clear'
+  puts `clear`
 
   puts "Welcome Detective #{player_name}"
   sleep 4;puts " \n"*10
@@ -99,7 +91,7 @@ def start_game
   puts "M: #{Suspect.all[0].name}, a father of two, was killed in his home."
   puts "M: We suspect foul play, but we want to be sure."
   puts "M: Please question the family and then let us know who the killer is so justice can be served."
-  # sleep 15;puts `clear`
+  sleep 15;puts `clear`
    #queue music
 
    begin_investigation
