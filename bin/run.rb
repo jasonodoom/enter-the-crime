@@ -40,7 +40,7 @@ def start_game
   loader
   puts "What is your name?"
   player_name = gets.chomp
-  puts 'clear'
+  puts `clear`
 
   puts "Welcome Detective #{player_name}"
   sleep 4;puts " \n"*10
