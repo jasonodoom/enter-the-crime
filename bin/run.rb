@@ -23,7 +23,8 @@ menu
 end
 
 def menu
-  "1) ☠ PLAY GAME ☠
+  "
+   1) ☠ PLAY GAME ☠
    2) ☠ CHARACTER PROFILE ☠
    3) ☠ PLAYER PROFILE ☠
    4) ☠ QUIT ☠
@@ -42,10 +43,12 @@ def start_game
   puts 'clear'
 
   puts "Welcome Detective #{player_name}"
-
-  puts "M: #{player_name.split[0]}, we had a murder last night. #{Suspect.all[0].name}, a father of two, was killed in his home."
+  sleep 4;puts " \n"*10
+  puts "M: #{player_name.split[0]}, we had a murder last night."
+  puts "M: #{Suspect.all[0].name}, a father of two, was killed in his home."
   puts "M: We suspect foul play, but we want to be sure."
   puts "M: Please question the family and then let us know who the killer is so justice can be served."
+  sleep 10;puts `clear`
    #queue music
 
    begin_investigation
