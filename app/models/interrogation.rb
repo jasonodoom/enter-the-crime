@@ -11,7 +11,7 @@ class Interrogation < ActiveRecord::Base
  end
 
 
- def choose_room
+ def self.choose_room
   puts "There are three rooms."
   puts "In each room sits a memeber of the Cthulu family."
 
