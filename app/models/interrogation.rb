@@ -6,9 +6,9 @@ class Interrogation < ActiveRecord::Base
  def enter_room_one
    puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[1].name} awaiting questioning."
    puts "#{Suspect.all[1].name} is a #{Suspect.all[1].family_relationship} of the Cthulu family."
-   puts""
-   puts""
+   puts " \n"*7
    puts "You read her description in your notes:\n" + "#{Suspect.all[1].description}"
+   puts " \n"*7
    puts "She looks scared and sad." + "\nBut you've been in this game for a long time."
    first_suspect = Suspect.all[1].name
    Suspect.speak_to_suspect(first_suspect)
@@ -17,9 +17,9 @@ class Interrogation < ActiveRecord::Base
  def enter_room_two
    puts "In the #{Interrogation.all[1].room} sits #{Suspect.all[2].name} awaiting questioning."
    puts "#{Suspect.all[2].name} is a #{Suspect.all[2].family_relationship} of the Cthulu family."
-   puts""
-   puts""
+   puts " \n"*7
    puts "You read his description in your notes:\n" + "#{Suspect.all[2].description}"
+   puts " \n"*7
    puts "He looks innocent. As if he didn't even know the man who had been murdered." + "\nBut you've been in this game for a long long time."
    second_suspect = Suspect.all[2].name
    Suspect.speak_to_suspect(second_suspect)
@@ -28,9 +28,9 @@ class Interrogation < ActiveRecord::Base
  def enter_room_three
    puts "In the #{Interrogation.all[2].room} sits #{Suspect.all[3].name} awaiting questioning."
    puts "#{Suspect.all[3].name} is a #{Suspect.all[3].family_relationship} of the Cthulu family."
-   puts""
-   puts""
+   puts " \n"*7
    puts "You read his description in your notes:\n" + "#{Suspect.all[3].description}"
+   puts " \n"*7
    puts "She looks cheerful. As if she had not just loss her father to murder." + "\nBut you've been in this game for a long long long time."
    third_suspect = Suspect.all[3].name
    Suspect.speak_to_suspect(third_suspect)
