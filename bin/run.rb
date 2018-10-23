@@ -31,7 +31,7 @@ def menu
 end
 
 def begin_investigation
-  Investigation.choose_room
+  Interrogation.choose_room
 end
 
 

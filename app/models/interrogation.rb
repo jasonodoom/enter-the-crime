@@ -11,7 +11,7 @@ class Interrogation < ActiveRecord::Base
  end
 
 
- def choose_room
+ def self.choose_room
   puts "There are three rooms."
   puts "In each room sits a memeber of the Cthulu family."
 
@@ -21,7 +21,7 @@ class Interrogation < ActiveRecord::Base
     #{Interrogation.all[1].room}
     #{Interrogation.all[2].room}
   "
- 
+
   puts "What room do you want to enter?"
   room_choice = gets.chomp
 
@@ -38,6 +38,6 @@ class Interrogation < ActiveRecord::Base
     puts "INVALID OPTION"
     choose_room
   end
- end 
-  
+end
+
 end
