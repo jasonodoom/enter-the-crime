@@ -3,7 +3,6 @@ class Interrogation < ActiveRecord::Base
  belongs_to :suspects
 
 
-
  def enter_room_one
    puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[1].name} awaiting questioning."
    puts "Suspect.all[1].name  is the  #{Suspect.all[1].family_relationship} of the Cthulu family."
@@ -12,10 +11,7 @@ class Interrogation < ActiveRecord::Base
  end
 
 
-
-
-
-def choose_room
+ def choose_room
   puts "There are three rooms."
   puts "In each room sits a memeber of the Cthulu family."
 
@@ -25,7 +21,7 @@ def choose_room
     #{Interrogation.all[1].room}
     #{Interrogation.all[2].room}
   "
-
+ 
   puts "What room do you want to enter?"
   room_choice = gets.chomp
 
@@ -42,5 +38,6 @@ def choose_room
     puts "INVALID OPTION"
     choose_room
   end
+ end 
   
 end

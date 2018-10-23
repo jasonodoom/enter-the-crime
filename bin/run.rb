@@ -43,7 +43,7 @@ def start_game
 
   puts "Welcome Detective #{player_name}"
 
-  puts "M: #{player_name.split[0]}, we had a murder last night. #{suspect.victim}, a father was killed in his home."
+  puts "M: #{player_name.split[0]}, we had a murder last night. #{Suspect.all[0].name}, a father was killed in his home."
   puts "M: We suspect foul play, but we want to be sure."
   puts "M: Please question the family and then let us know who the victim is, so justice can be served."
    #queue music
@@ -72,7 +72,7 @@ user_choice = gets.chomp
 
 if user_choice.downcase == "yes"|| user_choice.downcase == "y"
  puts "Then continue forward... "
-start_game
+ start_game
 elsif user_choice.downcase == "no" || user_choice.downcase == "n"
  puts "Then turn away..."
 end
