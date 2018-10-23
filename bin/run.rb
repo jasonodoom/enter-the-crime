@@ -31,6 +31,13 @@ def reset
    Player.all.delete_all
 end
 
+def restart
+  puts "INVALID COMMAND"
+  sleep 5;`clear`
+  art
+  menu
+end
+
 def reset_menu
   puts "You chose choice [1]: RESET"
   puts "Continue?[y/n]"
@@ -39,11 +46,8 @@ def reset_menu
      puts "Dropping all Players from the database....."
      reset
    else
-     puts "INVALID COMMAND"
-     sleep 5;`clear`
-     art
-     menu
-   end
+    restart
+  end
 end
 
 def character_profiles
@@ -71,6 +75,10 @@ def menu
    player_profile
  elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
    reset_menu
+ elsif user_input == "[5]" || user_input.downcase == "five" || user_input  == "5"
+   puts `clear`
+ else
+   restart
  end
 end
 
