@@ -4,12 +4,21 @@ class Interrogation < ActiveRecord::Base
 
 
  def enter_room_one
-   puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[1].name} awaiting questioning."
+   puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[2].name} awaiting questioning."
    puts "#{Suspect.all[2].name} is the #{Suspect.all[2].family_relationship} of the Cthulu family."
    puts "You read his description in your notes: #{Suspect.all[2].description}."
    puts "He looks frustrated and unapproachable. But you've been in this game for a long time."
 
    Suspect.speak_to_suspect(Suspect.all[2].name)
+ end
+
+ def enter_room_two
+   puts "In the #{Interrogation.all[1].room} sits #{Suspect.all[1].name} awaiting questioning."
+   puts "#{Suspect.all[1].name} is the #{Suspect.all[1].family_relationship} of the Cthulu family."
+   puts "You read her description in your notes: #{Suspect.all[1].description}."
+   puts "She looks shaken and distraught. But you've been in this game for a long, long time."
+
+   Suspect.speak_to_suspect(Suspect.all[1].name)
  end
 
 
@@ -33,7 +42,8 @@ class Interrogation < ActiveRecord::Base
     first_room.enter_room_one
   elsif room_choice.downcase == Interrogation.all[1].room.downcase || Interrogation.all[1].room == "one" || room_choice.downcase == "2"
     puts "Entering #{Interrogation.all[1].room}"
-    enter_room_two
+    second_room = Interrogation.all[1]
+    second_room.enter_room_two
   elsif room_choice.downcase == "3" || room_choice.downcase == "three" || room_choice.downcase == "room 3"
     puts "Entering #{Interrogation.all[2].room}"
     enter_room_three
