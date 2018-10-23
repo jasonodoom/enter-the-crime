@@ -32,17 +32,14 @@ end
 
  def begin_investigation
 
-   
+end
 
 
 def start_game
   loader
   puts "What is your name?"
   player_name = gets.chomp
-<<<<<<< HEAD
   puts 'clear'
-=======
-  puts `clear`
 
   puts "Welcome Detective #{player_name}"
 
@@ -53,7 +50,6 @@ def start_game
 
    begin_investigation
 
->>>>>>> jason
 end
 
 def intro
