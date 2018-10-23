@@ -5,9 +5,9 @@ class Interrogation < ActiveRecord::Base
 
  def enter_room_one
    puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[1].name} awaiting questioning."
-   puts "#{Suspect.all[1].name} is the #{Suspect.all[1].family_relationship} of the Cthulu family."
-   puts "You read her description in your notes #{Suspect.all[1].description}"
-   puts "She looks scared and sad. But you've been in this game for a long time."
+   puts "#{Suspect.all[2].name} is the #{Suspect.all[2].family_relationship} of the Cthulu family."
+   puts "You read him description in your notes #{Suspect.all[2].description}."
+   puts "He looks frustrated and unapproachable. But you've been in this game for a long time."
  end
 
 
