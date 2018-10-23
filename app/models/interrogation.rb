@@ -15,11 +15,11 @@ class Interrogation < ActiveRecord::Base
   puts "There are three rooms."
   puts "In each room sits a memeber of the Cthulu family."
 
-  puts "Here are the rooms:
+  puts "Choose a Room:
 
-    #{Interrogation.all[0].room}
-    #{Interrogation.all[1].room}
-    #{Interrogation.all[2].room}
+    [1] ☠#{Interrogation.all[0].room}☠
+    [2] ☠#{Interrogation.all[1].room}☠
+    [3] ☠#{Interrogation.all[2].room}☠
   "
 
   puts "What room do you want to enter?"
