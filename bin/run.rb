@@ -30,7 +30,7 @@ def menu
   "
 end
 
- def begin_investigation
+def begin_investigation
 
 end
 
