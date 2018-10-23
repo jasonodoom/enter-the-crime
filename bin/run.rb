@@ -12,8 +12,8 @@ def loader
      ░      ░   ░ ░   ░         ░     ░░   ░      ░       ░  ░░ ░   ░      ░          ░░   ░  ▒ ░░      ░      ░
      ░  ░         ░             ░  ░   ░                  ░  ░  ░   ░  ░   ░ ░         ░      ░         ░      ░  ░
                                                                            ░
-                        ▲ Enter the Crime ▲
-                     (a game by Randy & Jason)
+                                       ▲ Enter the Crime ▲
+                                    (a game by Randy & Jason)
 EOS
 
 print art
