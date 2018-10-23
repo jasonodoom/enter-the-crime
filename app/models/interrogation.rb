@@ -6,8 +6,10 @@ class Interrogation < ActiveRecord::Base
  def enter_room_one
    puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[1].name} awaiting questioning."
    puts "#{Suspect.all[2].name} is the #{Suspect.all[2].family_relationship} of the Cthulu family."
-   puts "You read him description in your notes #{Suspect.all[2].description}."
+   puts "You read his description in your notes: #{Suspect.all[2].description}."
    puts "He looks frustrated and unapproachable. But you've been in this game for a long time."
+
+   Suspect.speak_to_suspect(Suspect.all[2].name)
  end
 
 
@@ -17,9 +19,9 @@ class Interrogation < ActiveRecord::Base
 
   puts "Here are the rooms:
 
-    #{Interrogation.all[0].room}
-    #{Interrogation.all[1].room}
-    #{Interrogation.all[2].room}
+  1)  #{Interrogation.all[0].room}
+  2)  #{Interrogation.all[1].room}
+  3)  #{Interrogation.all[2].room}
   "
 
   puts "What room do you want to enter?"

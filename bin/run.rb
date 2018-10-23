@@ -40,7 +40,7 @@ def start_game
   loader
   puts "What is your name?"
   player_name = gets.chomp
-  puts 'clear'
+  puts `clear`
 
   puts "Welcome Detective #{player_name}"
   sleep 4;puts " \n"*10
@@ -48,7 +48,7 @@ def start_game
   puts "M: #{Suspect.all[0].name}, a father of two, was killed in his home."
   puts "M: We suspect foul play, but we want to be sure."
   puts "M: Please question the family and then let us know who the killer is so justice can be served."
-  sleep 10;puts `clear`
+  sleep 15;puts `clear`
    #queue music
 
    begin_investigation
