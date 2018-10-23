@@ -20,7 +20,7 @@ if user_choice.downcase == "yes"|| user_choice.downcase == "y"
 "Then continue forward... "
 start_game
 elsif user_choice.downcase == "no" || user_choice.downcase == "n"
-"The turn away..."
+"Then turn away..."
 end
 
 end
