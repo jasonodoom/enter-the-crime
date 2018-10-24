@@ -75,8 +75,10 @@ class Suspect < ActiveRecord::Base
       response_five = gets.chomp
       if response_five == "1"
         puts "Nick: No! My mother wouldn't do that. Ever. Sorry detective, I know nothing else."
+        Interrogation.choose_room
       elsif response_five == "2"
-        puts "My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
+        puts "My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it. I don't think my family is responsible for this... Sorry detective, leave me to mourn."
+        Interrogation.choose_room
       end
 
       response_four = gets.chomp
