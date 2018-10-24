@@ -21,6 +21,15 @@ class Interrogation < ActiveRecord::Base
    Suspect.speak_to_suspect(Suspect.all[1].name)
  end
 
+ def enter_room_three
+   puts "In the #{Interrogation.all[2].room} sits #{Suspect.all[3].name} awaiting questioning."
+   puts "#{Suspect.all[3].name} is the #{Suspect.all[3].family_relationship} of the Cthulu family."
+   puts "You read her description in your notes: #{Suspect.all[3].description}."
+   puts "She looks saddened and helpless. But you've been in this game for a long, long, long time."
+
+   Suspect.speak_to_suspect(Suspect.all[1].name)
+ end
+
 
  def self.choose_room
   puts "There are three rooms."
@@ -46,7 +55,8 @@ class Interrogation < ActiveRecord::Base
     second_room.enter_room_two
   elsif room_choice.downcase == "3" || room_choice.downcase == "three" || room_choice.downcase == "room 3"
     puts "Entering #{Interrogation.all[2].room}"
-    enter_room_three
+    third_room = Interrogation.all[2]
+    third_room.enter_room_three
   else
     puts "INVALID OPTION"
     choose_room
