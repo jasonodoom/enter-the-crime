@@ -99,7 +99,53 @@ class Suspect < ActiveRecord::Base
 
    elsif suspect == Suspect.all[3].name
      sleep 18;puts `clear`
-     puts "Jodie!"
+     puts "Jodie: Hello Detective..."
+     puts "*Pick a Response Number*"
+     puts "
+       [1] Good afternoon. Is there anything you can tell me about your mother’s relationship with your father?
+       [2] Good afternoon. Is there anything you can tell me about your brother's relationship with you father?
+       "
+       response_seven = gets.chomp
+       if response_seven == "1"
+         puts "Jodie: Mom and dad fight a lot but don't even think about it! My mother would never do this."
+       elsif response_seven == "2"
+         puts "Nick and dad were close... but they don't speak much now that he's in school."
+       end
+       puts "*Pick a Response Number*"
+       puts "
+         [1] When your parents disagreed, what kind of disagreements would they have?
+         [2] Were you close to your dad growing up?
+         "
+         response_eight = gets.chomp
+         if response_eight == "1"
+           puts "Jodie: Nothing specific... they just lost that spark, ya know?"
+         elsif response_eight == "2"
+           puts "Jodie: We were all close... a few years, everything changed. My brother went to school and my parents kinda drifted apart."
+         end
+         puts "*Pick a Response Number*"
+         puts "
+           [1] Any specific reason your parents would 'drift'?
+           [2] So what were you doing in the kitchen?
+           "
+           response_nine = gets.chomp
+           if response_nine == "1"
+             puts "Jodie: I don't know. I don't think so."
+           elsif response_nine == "2"
+             puts "Jodie: Making pasta for dinner."
+           end
+           puts "*Pick a Response Number"
+           puts "
+             [1] Have you or anybody in your family suspected your father of infedelity?
+             [2] Are you sure you were in the kitchen?
+             "
+             response_ten = gets.chomp
+             if response_ten == "1"
+               puts "My brother and I had… We would never tell mother though. We didn’t want to break her heart… sorry detective, I know nothing else…"
+               Interrogation.choose_room
+             elsif response_ten == "2"
+               puts "Are you suspecting me of… leave now, detective!"
+               Interrogation.choose_room
+             end
   else
     self.speak_to_suspect
   end
