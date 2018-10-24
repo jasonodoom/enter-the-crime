@@ -13,7 +13,6 @@
 ActiveRecord::Schema.define(version: 20181022195420) do
 
   create_table "interrogations", force: :cascade do |t|
-    t.string  "player_id"
     t.string  "suspect_id"
     t.string  "room"
     t.boolean "complete",   default: false

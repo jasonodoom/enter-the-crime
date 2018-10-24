@@ -3,6 +3,6 @@ Suspect.create(name: "Ana", sex: "F", family_relationship: "Mother", description
 Suspect.create(name: "Nick", sex: "M", family_relationship: "Son", description: "Nick is the eldest son of Steven and Ana Cthulu. During the murder, he claims he was in the living room watching TV. He was the one to find the body.", guilty: false)
 Suspect.create(name: "Jodie", sex: "F", family_relationship: "Daughter", description: "Jodie is the youngest daughter of Steven and Ana Cthulu. During the murder, she claims she was in the kitchen.", guilty: false  )
 
-Interrogation.create(room: "Living Room")
-Interrogation.create(room: "Yard")
-Interrogation.create(room: "Kitchen")
+Interrogation.create(suspect_id: 3, room: "Living Room")
+Interrogation.create(suspect_id: 2, room: "Yard")
+Interrogation.create(suspect_id: 4, room: "Kitchen")

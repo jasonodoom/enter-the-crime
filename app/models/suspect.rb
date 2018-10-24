@@ -15,7 +15,7 @@ class Suspect < ActiveRecord::Base
      puts "*Pick a Response Number*"
      puts "
       [1] How was your relationship with your husband?
-      [2] Where were you the night your husband was murdered?]
+      [2] Where were you the night your husband was murdered?
      "
      response_eleven = gets.chomp
        if response_eleven == "1"
@@ -32,34 +32,34 @@ class Suspect < ActiveRecord::Base
        [2] I understand you're grieving Mrs. Cthulu, but your husband was murdered.
        [3] Who was in the kitchen with you?
        "
-       response_twelve == gets.chomp
+       response_twelve = gets.chomp
        if response_twelve == "1"
          puts "Anna: Well? Are we done?"
          sleep 5
          puts "Yes, we're done. Thank you for your help Mrs. Cthulu. Feel better."
          puts""
          puts""
-         Interrogation.set_complete
+         Interrogation.set_complete(2)
          sleep 2; puts "loading........"; sleep 10; puts `clear`
-         Interrogation.choose_room
+         Interrogation.new_menu_if_1
        elsif response_twelve == "2"
          puts "Precisely. MY HUSBAND. So don't preach at me! Are we done or are going to keep reminding me of the obvious?"
          sleep 5
          puts "I didn't mean to upset you. We're done. I thank you for your time."
          puts""
          puts""
-         Interrogation.set_complete
+         Interrogation.set_complete(2)
          sleep 2; puts "loading........"; sleep 10; puts `clear`
-         Interrogation.choose_room
+         Interrogation.new_menu_if_1
        elsif response_twelve == "3"
          puts "I was in the kitchen alone that evening."
          sleep 5
          puts""
          puts""
-         Interrogation.set_complete
+         Interrogation.set_complete(2)
          sleep 2; puts "loading........"; sleep 10; puts `clear`
          puts "Thank you for the information Mrs. Cthulu, please have a nice day."
-         Interrogation.choose_room
+         Interrogation.new_menu_if_1
        end
 
    elsif suspect == Suspect.all[2].name
@@ -97,9 +97,9 @@ class Suspect < ActiveRecord::Base
         puts "Nick: THEN WE ARE DONE HERE DETECTIVE!"
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(3)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_0
       else
         puts "Nick: Okay..."
         puts "*Pick a Response Number*"
@@ -112,16 +112,16 @@ class Suspect < ActiveRecord::Base
         puts "Nick: I'M FED UP WITH YOU SUSPECTING ME, PLEASE LEAVE!"
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(3)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_0
         elsif response_six == "2"
         puts "I apologize detective, but I'm tired of your questioning. Leave me to mourn..."
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(3)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_0
         end
       end
 
@@ -144,16 +144,16 @@ class Suspect < ActiveRecord::Base
         puts "Nick: No! My mother wouldn't do that. Ever. Sorry detective, I know nothing else."
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(3)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_0
       elsif response_five == "2"
         puts "My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it. I don't think my family is responsible for this... Sorry detective, leave me to mourn."
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(3)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_0
       end
 
       response_four = gets.chomp
@@ -168,16 +168,16 @@ class Suspect < ActiveRecord::Base
         puts "Nick: No!! My mother wouldn't do that... ever. Sorry detective, I know nothing else."
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(4)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_2
       elsif response_five == "2"
         puts "My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
         puts ""
         puts ""
-        Interrogation.set_complete
+        Interrogation.set_complete(4)
         sleep 2; puts "loading........"; sleep 10; puts `clear`
-        Interrogation.choose_room
+        Interrogation.new_menu_if_2
       end
 
     end
@@ -228,17 +228,16 @@ class Suspect < ActiveRecord::Base
                puts "My brother and I had… We would never tell mother though. We didn’t want to break her heart… sorry detective, I know nothing else…"
                puts ""
                puts ""
-               Interrogation.set_complete
+               Interrogation.set_complete(4)
                sleep 2; puts "loading........"; sleep 10; puts `clear`
-               Interrogation.set_complete
-               Interrogation.choose_room
+               Interrogation.new_menu_if_2
              elsif response_ten == "2"
                puts "Are you suspecting me of… leave now, detective!"
                puts ""
                puts ""
-               Interrogation.set_complete
+               Interrogation.set_complete(4)
                sleep 2; puts "loading........"; sleep 10; puts `clear`
-               Interrogation.choose_room
+               Interrogation.new_menu_if_2
              end
   else
     self.speak_to_suspect
