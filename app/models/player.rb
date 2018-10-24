@@ -3,5 +3,7 @@ class Player < ActiveRecord::Base
 
 
   def identify_player
-    #this method should identify the player for use in suspect.rb {Player.all.name}: dialogue here   
+    #this method should identify the player for use in suspect.rb {Player.all.name}: dialogue here
+  end
+  
 end
