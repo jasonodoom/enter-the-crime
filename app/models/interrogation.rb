@@ -3,7 +3,7 @@ class Interrogation < ActiveRecord::Base
  belongs_to :suspects
 
  def self.choose_room
-  sleep 4;puts "There are three rooms."
+  puts "loading....";sleep 4;puts `clear`;puts "There are three rooms."
   puts "In each room sits a memeber of the Cthulu family."
 
   puts "Choose a Room:
@@ -60,5 +60,9 @@ end
 
    Suspect.speak_to_suspect(Suspect.all[3].name)
  end
+
+ def self.set_complete
+   #change complete status of room
+ end 
 
 end
