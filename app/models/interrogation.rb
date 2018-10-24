@@ -58,7 +58,7 @@ end
    puts "You read her description in your notes: #{Suspect.all[3].description}."
    puts "She looks saddened and helpless. But you've been in this game for a long, long, long time."
 
-   Suspect.speak_to_suspect(Suspect.all[1].name)
+   Suspect.speak_to_suspect(Suspect.all[3].name)
  end
 
 end
