@@ -8,9 +8,9 @@ class Interrogation < ActiveRecord::Base
 
   puts "Choose a Room:
 
-    [1] ☠#{Interrogation.all[0].room}☠
-    [2] ☠#{Interrogation.all[1].room}☠
-    [3] ☠#{Interrogation.all[2].room}☠
+    [1] ☠ #{Interrogation.all[0].room} ☠
+    [2] ☠ #{Interrogation.all[1].room} ☠
+    [3] ☠ #{Interrogation.all[2].room} ☠
   "
 
   puts "What room do you want to enter?"
