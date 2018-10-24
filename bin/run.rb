@@ -61,7 +61,7 @@ def menu
    [4] ☠ RESET ☠
    [5] ☠ QUIT ☠
   "
-  puts "Please choose a menu option: [1] [2] [3] [4] [5]"
+  puts "Please choose a menu option: [1][2][3][4][5]"
   user_input = gets.chomp
  if user_input == "[1]" || user_input.downcase == "one" || user_input == "1"
    start_game
@@ -87,10 +87,10 @@ def start_game
 
   puts "Welcome Detective #{player_name}"
   sleep 4;puts " \n"*10
-  puts "M: #{player_name.split[0]}, we had a murder last night."
-  puts "M: #{Suspect.all[0].name}, a father of two, was killed in his home."
-  puts "M: We suspect foul play, but we want to be sure."
-  puts "M: Please question the family and then let us know who the killer is so justice can be served."
+  puts "Detective M: #{player_name.split[0]}, we had a murder last night."
+  puts "Detective M: #{Suspect.all[0].name}, a father of two, was killed in his home."
+  puts "Detective M: We suspect foul play, but we want to be sure."
+  puts "Detective M: Please question the family and then let us know who the killer is so justice can be served."
   sleep 15;puts `clear`
    #queue music
 
