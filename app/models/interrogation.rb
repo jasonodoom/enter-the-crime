@@ -3,7 +3,7 @@ class Interrogation < ActiveRecord::Base
  belongs_to :suspects
 
  def self.choose_room
-  puts "There are three rooms."
+  sleep 10;puts "There are three rooms."
   puts "In each room sits a memeber of the Cthulu family."
 
   puts "Choose a Room:
