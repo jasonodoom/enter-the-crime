@@ -4,7 +4,7 @@ class Suspect < ActiveRecord::Base
   def self.speak_to_suspect(suspect)
    if suspect == Suspect.all[1].name
      sleep 18;puts `clear`
-     puts "HEY!"
+     puts "Ana!"
    elsif suspect == Suspect.all[2].name
      sleep 18;puts `clear`
      puts "Nick: Good morning Detective. How can I help...?"
@@ -96,7 +96,8 @@ class Suspect < ActiveRecord::Base
     end
 
    elsif suspect == Suspect.all[3].name
-     #
+     sleep 18;puts `clear`
+     puts "Jodie!"
   else
     self.speak_to_suspect
   end
