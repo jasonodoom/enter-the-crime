@@ -4,6 +4,7 @@ class CreateInterrogations < ActiveRecord::Migration[5.0]
       t.string :player_id
       t.string :suspect_id
       t.string :room
+      t.boolean :complete, default: false 
     end
   end
 end

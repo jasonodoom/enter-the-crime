@@ -78,22 +78,30 @@ def begin_investigation
   Interrogation.choose_room
 end
 
+def create_player(player_name, player_sex)
+  Player.create(name: player_name, sex: player_sex)
+end
 
 def start_game
   puts `clear`
   puts "What is your name?"
   player_name = gets.chomp
+  puts "What is you sex?[M/F]"
+  player_sex = gets.chomp
+  create_player(player_name, player_sex.upcase)
   puts `clear`
 
   puts "Welcome Detective #{player_name}"
-  sleep 4;puts " \n"*10
-  puts "Detective M: #{player_name.split[0]}, we had a murder last night."
-  puts "Detective M: #{Suspect.all[0].name}, a father of two, was killed in his home."
+  puts ""
+  puts "loading........";sleep 4;puts " \n"*10;puts `clear`
+  puts "Detective M: #{Player.all.last.name.split[0]}, we had a murder last night."
+  puts "Detective M: #{Suspect.all.first.name}, a father of two, was killed in his home."
   puts "Detective M: We suspect foul play, but we want to be sure."
   puts "Detective M: Please question the family and then let us know who the killer is so justice can be served."
-  sleep 15;puts `clear`
+  puts ""
+  puts ""
+  puts "loading........";sleep 15;puts `clear`
    #queue music
-
    begin_investigation
 
 end

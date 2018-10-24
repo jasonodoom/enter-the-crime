@@ -8,14 +8,14 @@ class Suspect < ActiveRecord::Base
      puts "Ana!"
    elsif suspect == Suspect.all[2].name
      sleep 18;puts `clear`
-     puts "Nick: Good morning Detective. How can I help...?"
-     puts "Detective: I was told you were the one that found the body."
+     puts "Nick: Good morning Detective #{Player.all.last.name.split[0]}. How can I help?"
+     puts "Detective #{Player.all.last.name.split[0]}: I was told you were the one that found the body."
      puts "Nick: Yes, that is true."
 
     puts "*Pick a Response Number*"
     puts "
-     [1] Did you see anything worth noting on the body?
-     [2] What was the first thing you did after discovering the body?
+      [1] Did you see anything worth noting on the body?
+      [2] What was the first thing you did after discovering the body?
      "
     response_one = gets.chomp
       if response_one == "1"
@@ -25,31 +25,31 @@ class Suspect < ActiveRecord::Base
       end
     puts "*Pick a Response Number*"
     puts "
-    [1] Was there any strange behavior by your family in the days leading up to today?
-    [2] Are you sure all you did was 'find' the body?
+      [1] Was there any strange behavior by your family in the days leading up to today?
+      [2] Are you sure all you did was 'find' the body?
     "
     response_two = gets.chomp
     if response_two == "2"
-      puts "Nick: Are you accusing me of murdering my own father?!"
+      puts "Nick: ARE YOU ACCUSING ME OF MURDERING MY OWN FATHER?"
       puts "*Pick a Response Number*"
       puts "
-      [1] Yes!
-      [2] Not yet..."
-
+        [1] Yes!
+        [2] Not yet...
+        "
       response_three = gets.chomp
       if response_three == "1"
-        puts "Nick: Then we are done here, detective!"
+        puts "Nick: THEN WE ARE DONE HERE DETECTIVE!"
       else
         puts "Nick: Okay..."
         puts "*Pick a Response Number*"
         puts "
-        [1] So what were you watching on TV before the murder occured?
-        [2] Anybody you know capable of this murder...?
+          [1] So what were you watching on TV before the murder occured?
+          [2] Anybody you know capable of this murder...?
         "
 
         response_six = gets.chomp
         if response_six == "1"
-        puts "Nick: I'm fed up with you suspecting me, please leave!"
+        puts "Nick: I'M FED UP WITH YOU SUSPECTING ME, PLEASE LEAVE!"
         Interrogation.choose_room
         elsif response_six == "2"
         puts "I apologize detective, but I'm tired of your questioning. Leave me to mourn..."
@@ -61,30 +61,31 @@ class Suspect < ActiveRecord::Base
       puts "Nick: Honestly, my parents have been fighting, but that isn't 'strange behavior'... Life has been this way for the last few years."
       puts "*Pick a Response Number*"
       puts "
-      [1] And why is that?
-      [2] And how did that make you feel?"
+        [1] And why is that?
+        [2] And how did that make you feel?
+        "
 
       response_four = gets.chomp
       puts "Nick: Father hasn't been very invested in the family lately. Around the time I began college, so I didn't feel the affect much... Mom tells me he became distant and she... she wasn't happy."
       puts "*Pick a Response Number*"
       puts "
-      [1] Do you believe your mom could be capable of...?
-      [2] Why do you believe he became distant
+        [1] Do you believe your mom could be capable of...?
+        [2] Why do you believe he became distant?
         "
       response_five = gets.chomp
       if response_five == "1"
-        puts "Nick: No!! My mother wouldn't do that... ever. Sorry detective, I know nothing else."
+        puts "Nick: No! My mother wouldn't do that. Ever. Sorry detective, I know nothing else."
       elsif response_five == "2"
         puts "My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
       end
 
       response_four = gets.chomp
-      puts "Nick: Father hasn't been very invested in the family lately. Around the time I began college, so I didn't feel the affect much... Mom tells me he became distant and she... she wasn't happy."
+      puts "Nick: Father hasn't been very invested in the family lately, around the time I began college. So I didn't feel the affect much... Mom tells me he became distant and she... she wasn't happy."
       puts "*Pick a Response Number*"
       puts "
       [1] Do you believe your mom could be capable of...?
       [2] Why do you believe he became distant?
-        "
+      "
       response_five = gets.chomp
       if response_five == "1"
         puts "Nick: No!! My mother wouldn't do that... ever. Sorry detective, I know nothing else."
