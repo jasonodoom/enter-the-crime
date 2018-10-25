@@ -196,15 +196,15 @@ class Suspect < ActiveRecord::Base
         puts ""
         Interrogation.set_complete(3)
         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
-        Interrogation.new_menu_if_2
+        Interrogation.new_menu_if_0
       elsif response_five == "2"
         puts `clear`
         puts "Jodie: My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
         puts ""
         puts ""
-        Interrogation.set_complete(4)
+        Interrogation.set_complete(3)
         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
-        Interrogation.new_menu_if_2
+        Interrogation.new_menu_if_0
       end
 
     end
