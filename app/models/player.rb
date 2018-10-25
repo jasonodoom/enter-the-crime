@@ -36,8 +36,10 @@ art = <<-EOS
      ░      ░   ░ ░   ░         ░     ░░   ░      ░       ░  ░░ ░   ░      ░          ░░   ░  ▒ ░░      ░      ░
      ░  ░         ░             ░  ░   ░                  ░  ░  ░   ░  ░   ░ ░         ░      ░         ░      ░  ░
                                                                            ░
-                                       ▲ Enter the Crime ▲
 EOS
+print art
+sleep 10;puts `clear`
+puts "END OF GAME. CASE CLOSED";sleep 10;puts `clear`
 end
 
 def self.finale

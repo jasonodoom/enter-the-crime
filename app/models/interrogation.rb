@@ -44,6 +44,7 @@ class Interrogation < ActiveRecord::Base
 
 def self.no_avail
   puts `clear`;puts "ALL INVESTIGATIONS HAVE BEEN COMPLETED";sleep 2;puts `clear`;puts "RETURNING TO HQ......";sleep 6;puts `clear`
+  Player.finale
 end
 
 
@@ -88,7 +89,14 @@ end
  def self.new_menu_if_0
    if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
     self.no_avail
-    Player.finale
+  elsif  Interrogation.all[1].complete == true
+    puts "Choose a Room:
+
+      [3] ☠ #{Interrogation.all[2].room} ☠
+    "
+
+   elsif Interrogation.all[2].complete == true
+    self.no_avail
    else
     puts "Choose a Room:
 
@@ -120,14 +128,25 @@ end
     def self.new_menu_if_1
       if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
         self.no_avail
-        Player.finale
+      elsif Interrogation.all[0].complete == true && Interrogation.all[2].complete == true
+         self.no_avail
+      elsif Interrogation.all[0].complete == true
+        puts "Choose a Room:
+
+          [3] ☠ #{Interrogation.all[2].room} ☠
+          "
+      elsif  Interrogation.all[2].complete == true
+        puts "Choose a Room:
+
+          [1] ☠ #{Interrogation.all[0].room} ☠
+          "
       else
         puts "Choose a Room:
 
-          [1] ☠ #{ Interrogation.all[0].room} ☠
+          [1] ☠ #{Interrogation.all[0].room} ☠
           [3] ☠ #{Interrogation.all[2].room} ☠
 
-          "
+        "
 
           room_choice_for_1 = gets.chomp
 
@@ -154,13 +173,26 @@ end
     def self.new_menu_if_2
       if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
         Interrogation.no_avail
-        Player.finale
+      elsif Interrogation.all[0].complete == true && Interrogation.all[1].complete == true
+         self.no_avail
+      elsif Interrogation.all[0].complete == true
+        puts "Choose a Room:
+
+          [2] ☠ #{Interrogation.all[1].room} ☠
+        "
+      elsif Interrogation.all[1].complete == true
+        puts "Choose a Room:
+
+          [1] ☠ #{ Interrogation.all[0].room} ☠
+
+        "
       else
-      puts "Choose a Room:
+       puts "Choose a Room:
 
         [1] ☠ #{ Interrogation.all[0].room} ☠
         [2] ☠ #{Interrogation.all[1].room} ☠
       "
+
       room_choice_for_2 = gets.chomp
 
       if room_choice_for_2.downcase == Interrogation.all[0].room.downcase || Interrogation.all[0].room == "one" || room_choice.downcase == "1"

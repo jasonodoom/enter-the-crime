@@ -48,7 +48,7 @@ class Suspect < ActiveRecord::Base
        elsif response_twelve == "2"
          puts `clear`
          puts "Precisely. MY HUSBAND. So don't preach at me! Are we done or are going to keep reminding me of the obvious?"
-         sleep 5
+         new_menu_if_1sleep 5
          puts "I didn't mean to upset you. We're done. I thank you for your time."
          puts""
          puts""
@@ -62,8 +62,8 @@ class Suspect < ActiveRecord::Base
          puts""
          puts""
          Interrogation.set_complete(2)
-         sleep 2; puts "loading........"; sleep 10; puts `clear`
          puts "Thank you for the information Mrs. Cthulu, please have a nice day."
+         sleep 2; puts "loading........"; sleep 10; puts `clear`
          Interrogation.new_menu_if_1
        end
 
@@ -147,6 +147,7 @@ class Suspect < ActiveRecord::Base
         [2] And how did that make you feel?
         "
       response_four = gets.chomp
+      puts `clear`
       puts "Nick: Father hasn't been very invested in the family lately. Around the time I began college, so I didn't feel the affect much... Mom tells me he became distant and she... she wasn't happy."
       puts "*Pick a Response Number*"
       puts "

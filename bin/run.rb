@@ -71,6 +71,8 @@ def menu
    player_profile
  elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
    reset_menu
+ elsif user_input == "[5]" || user_input.downcase == "five" || user_input  == "5"
+   puts "LEAVING CASE.....";puts `clear`
  end
 end
 
