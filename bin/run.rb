@@ -37,7 +37,9 @@ def reset_menu
   user_confirmation = gets.chomp
    if user_confirmation.downcase == "y"
      puts "Dropping all Players from the database....."
+     puts "Cleaning up....."
      reset
+     Player.put_things_back
    else
      puts "INVALID COMMAND"
      sleep 5;`clear`
@@ -71,8 +73,6 @@ def menu
    player_profile
  elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
    reset_menu
- elsif user_input == "[5]" || user_input.downcase == "five" || user_input  == "5"
-   puts "LEAVING CASE.....";puts `clear`
  end
 end
 

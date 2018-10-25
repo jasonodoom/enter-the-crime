@@ -61,19 +61,19 @@ end
   puts "What room do you want to enter?"
   room_choice = gets.chomp
 
-  if room_choice.downcase == Interrogation.all[0].room.downcase || room_choice.downcase == "one" || room_choice.downcase == "1"
+  if room_choice.downcase == Interrogation.all[0].room.downcase || room_choice.downcase == "one" || room_choice == "1"
     puts `clear`
     puts "Entering #{Interrogation.all[0].room}...."
     sleep 8;puts `clear`
     first_room = Interrogation.all[0]
     first_room.enter_room_one
-  elsif room_choice.downcase == Interrogation.all[1].room.downcase || room_choice.downcase == "one" || room_choice.downcase == "2"
+  elsif room_choice.downcase == Interrogation.all[1].room.downcase || room_choice.downcase == "one" || room_choice == "2"
     puts `clear`
     puts "Entering #{Interrogation.all[1].room}...."
     sleep 8;puts `clear`
     second_room = Interrogation.all[1]
     second_room.enter_room_two
-  elsif room_choice.downcase == Interrogation.all[2].room.downcase || room_choice.downcase == "three" || room_choice.downcase == "3"
+  elsif room_choice.downcase == Interrogation.all[2].room.downcase || room_choice.downcase == "three" || room_choice == "3"
     puts `clear`
     puts "Entering #{Interrogation.all[2].room}...."
     sleep 8;puts `clear`
@@ -89,14 +89,20 @@ end
  def self.new_menu_if_0
    if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
     self.no_avail
-  elsif  Interrogation.all[1].complete == true
+  elsif  Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
+    self.no_avail
+  elsif Interrogation.all[1].complete == true
     puts "Choose a Room:
 
       [3] ☠ #{Interrogation.all[2].room} ☠
     "
-
+     room_choice_for_0 = gets.chomp
    elsif Interrogation.all[2].complete == true
-    self.no_avail
+     puts "Choose a Room:
+
+       [2] ☠ #{Interrogation.all[1].room} ☠
+     "
+      room_choice_for_0 = gets.chomp
    else
     puts "Choose a Room:
 
@@ -135,11 +141,13 @@ end
 
           [3] ☠ #{Interrogation.all[2].room} ☠
           "
+           room_choice_for_1 = gets.chomp
       elsif  Interrogation.all[2].complete == true
         puts "Choose a Room:
 
           [1] ☠ #{Interrogation.all[0].room} ☠
           "
+           room_choice_for_1 = gets.chomp
       else
         puts "Choose a Room:
 
@@ -147,16 +155,15 @@ end
           [3] ☠ #{Interrogation.all[2].room} ☠
 
         "
-
           room_choice_for_1 = gets.chomp
 
-          if room_choice_for_1.downcase == Interrogation.all[0].room.downcase ||room_choice_for_1.downcase == "one" || room_choice.downcase == "1"
+          if room_choice_for_1.downcase == Interrogation.all[0].room.downcase ||room_choice_for_1.downcase == "one" || room_choice_for_1.downcase == "1"
             puts `clear`
             puts "Entering #{Interrogation.all[0].room}...."
             sleep 8;puts `clear`
             first_room = Interrogation.all[0]
             first_room.enter_room_one
-          elsif  room_choice_for_1.downcase == Interrogation.all[2].room.downcase || room_choice_for_1.downcase == "three" || room_choice.downcase == "3"
+          elsif  room_choice_for_1.downcase == Interrogation.all[2].room.downcase || room_choice_for_1.downcase == "three" || room_choice_for_1.downcase == "3"
              puts `clear`
              puts "Entering #{Interrogation.all[2].room}...."
              sleep 8;puts `clear`
@@ -164,7 +171,7 @@ end
              third_room.enter_room_three
           else
             puts "INVALID OPTION";sleep 5
-            puts `clear`
+            puts `clear`;Interrogation.all[0]
             self.new_menu_if_1
           end
       end
@@ -172,7 +179,7 @@ end
 
     def self.new_menu_if_2
       if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
-        Interrogation.no_avail
+        self.no_avail
       elsif Interrogation.all[0].complete == true && Interrogation.all[1].complete == true
          self.no_avail
       elsif Interrogation.all[0].complete == true
@@ -180,28 +187,30 @@ end
 
           [2] ☠ #{Interrogation.all[1].room} ☠
         "
+        room_choice_for_2 = gets.chomp
+
       elsif Interrogation.all[1].complete == true
         puts "Choose a Room:
 
           [1] ☠ #{ Interrogation.all[0].room} ☠
 
         "
+        room_choice_for_2 = gets.chomp
       else
        puts "Choose a Room:
 
         [1] ☠ #{ Interrogation.all[0].room} ☠
         [2] ☠ #{Interrogation.all[1].room} ☠
       "
-
       room_choice_for_2 = gets.chomp
 
-      if room_choice_for_2.downcase == Interrogation.all[0].room.downcase || Interrogation.all[0].room == "one" || room_choice.downcase == "1"
+      if room_choice_for_2.downcase == Interrogation.all[0].room.downcase || room_choice_for_2.downcase == "one" || room_choice_for_2 == "1"
         puts `clear`
         puts "Entering #{Interrogation.all[0].room}...."
         sleep 8;puts `clear`
         first_room = Interrogation.all[0]
         first_room.enter_room_one
-      elsif room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice.downcase == "2"
+      elsif room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice_for_2 == "2"
         puts `clear`
          puts "Entering #{Interrogation.all[1].room}...."
          sleep 8;puts `clear`
