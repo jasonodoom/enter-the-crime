@@ -150,13 +150,13 @@ end
 
           room_choice_for_1 = gets.chomp
 
-          if room_choice_for_1.downcase == Interrogation.all[0].room.downcase || Interrogation.all[0].room == "one" || room_choice.downcase == "1"
+          if room_choice_for_1.downcase == Interrogation.all[0].room.downcase ||room_choice_for_1.downcase == "one" || room_choice.downcase == "1"
             puts `clear`
             puts "Entering #{Interrogation.all[0].room}...."
             sleep 8;puts `clear`
             first_room = Interrogation.all[0]
             first_room.enter_room_one
-          elsif  room_choice_for_1.downcase == Interrogation.all[2].room.downcase || Interrogation.all[2].room == "three" || room_choice.downcase == "3"
+          elsif  room_choice_for_1.downcase == Interrogation.all[2].room.downcase || room_choice_for_1.downcase == "three" || room_choice.downcase == "3"
              puts `clear`
              puts "Entering #{Interrogation.all[2].room}...."
              sleep 8;puts `clear`
@@ -201,7 +201,7 @@ end
         sleep 8;puts `clear`
         first_room = Interrogation.all[0]
         first_room.enter_room_one
-      elsif  room_choice_for_2.downcase == Interrogation.all[1].room.downcase || Interrogation.all[1].room == "two" || room_choice.downcase == "2"
+      elsif room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice.downcase == "2"
         puts `clear`
          puts "Entering #{Interrogation.all[1].room}...."
          sleep 8;puts `clear`
