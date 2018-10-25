@@ -171,40 +171,13 @@ class Suspect < ActiveRecord::Base
         Interrogation.new_menu_if_0
       elsif response_five == "2"
         puts `clear`
-        puts "Jodie: My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
-        puts "Jodie: I don't think my family is responsible for this... Sorry detective, leave me to mourn."
+        puts "Nick: Mom suspected infedility but... I don't know. Leave me to mourn, detective"
         puts ""
         puts ""
         Interrogation.set_complete(3)
         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
         Interrogation.new_menu_if_0
-      end
 
-      response_four = gets.chomp
-      puts "Nick: Father hasn't been very invested in the family lately, around the time I began college. So I didn't feel the effect much... Mom tells me he became distant and she... she wasn't happy."
-      puts "\n"
-      puts "*Pick a Response Number*"
-      puts "
-      [1] Do you believe your mom could be capable of...?
-      [2] Why do you believe he became distant?
-      "
-      response_five = gets.chomp
-      if response_five == "1"
-        puts `clear`
-        puts "Nick: No!! My mother wouldn't do that... ever. Sorry detective, I know nothing else."
-        puts ""
-        puts ""
-        Interrogation.set_complete(3)
-        sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
-        Interrogation.new_menu_if_0
-      elsif response_five == "2"
-        puts `clear`
-        puts "Jodie: My mother suspects he may have fallen out of love... maybe beginning to see somebody else... but I don't believe it."
-        puts ""
-        puts ""
-        Interrogation.set_complete(3)
-        sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
-        Interrogation.new_menu_if_0
       end
 
     end
