@@ -2,7 +2,7 @@ class Suspect < ActiveRecord::Base
   has_many :interrogations
 
   def self.speak_to_suspect(suspect)
-   if suspect == Suspect.all[1].name
+   if suspect == Suspect.all[1].name # Ana
      puts"\n";puts "loading........";sleep 18;puts `clear`
      puts "Anna: Detective #{Player.all.last.name.split[0]}, I understand you need to do your job. And I would like to find justice for my
       husband. But it is too early and I don't know if I can be of any help at this time. This is simply too much for me to handle right
