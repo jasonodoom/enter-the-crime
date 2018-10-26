@@ -100,25 +100,18 @@ def player_profile
 end
 
 def menu
-  puts"
-   MENU:
-   [1] ☠ PLAY GAME ☠
-   [2] ☠ CHARACTER PROFILES ☠
-   [3] ☠ PLAYER PROFILE ☠
-   [4] ☠ RESET ☠
-   [5] ☠ QUIT ☠
-  "
-  puts "Please choose a menu option: [1][2][3][4][5]"
-  user_input = gets.chomp
- if user_input == "[1]" || user_input.downcase == "one" || user_input == "1"
+  prompt = TTY::Prompt.new
+  puts ""
+  case prompt.select("Please choose a menu option: [1][2][3][4][5]",["[1] ☠ PLAY GAME ☠","[2] ☠ CHARACTER PROFILES ☠","[3] ☠ PLAYER PROFILE ☠","[4] ☠ RESET ☠","[5] ☠ QUIT ☠"])
+  when "[1] ☠ PLAY GAME ☠"
    start_game
- elsif user_input == "[2]" || user_input.downcase == "two" || user_input  == "2"
+  when "[2] ☠ CHARACTER PROFILES ☠"
    character_profiles
- elsif user_input == "[3]" || user_input.downcase == "three" || user_input  == "3"
+  when "[3] ☠ PLAYER PROFILE ☠"
    player_profile
- elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
+  when "[4] ☠ RESET ☠"
    reset_menu
- end
+  end
 end
 
 def begin_investigation
