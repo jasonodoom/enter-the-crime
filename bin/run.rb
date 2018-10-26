@@ -20,34 +20,19 @@ EOS
 print art
 end
 
-
-def theme_music
-  track = fork{exec 'afplay', '../app/music/theme.wav'}
-   loop do
-    track
-   sleep 666
-  end
-end
-
 def loader
   puts `clear`
-  # theme_music
-  art
-  menu
+  #queu theme music
+art
+menu
 end
 
 def reset
-   Player.all.delete_all
-end
-
-def reset_menu
   puts "You chose choice [1]: RESET"
   puts "Continue?[y/n]"
   user_confirmation = gets.chomp
    if user_confirmation.downcase == "y"
-     puts "Dropping all Players from the database....."
      puts "Cleaning up....."
-     reset
      Player.put_things_back
    elsif user_confirmation.downcase == "n"
      menu
@@ -109,18 +94,25 @@ def player_profile
 end
 
 def menu
-  prompt = TTY::Prompt.new
-  puts ""
-  case prompt.select("Please choose a menu option: [1][2][3][4][5]",["[1] ☠ PLAY GAME ☠","[2] ☠ CHARACTER PROFILES ☠","[3] ☠ PLAYER PROFILE ☠","[4] ☠ RESET ☠","[5] ☠ QUIT ☠"])
-  when "[1] ☠ PLAY GAME ☠"
+  puts"
+   MENU:
+   [1] ☠ PLAY GAME ☠
+   [2] ☠ CHARACTER PROFILES ☠
+   [3] ☠ PLAYER PROFILE ☠
+   [4] ☠ RESET ☠
+   [5] ☠ QUIT ☠
+  "
+  puts "Please choose a menu option: [1][2][3][4][5]"
+  user_input = gets.chomp
+ if user_input == "[1]" || user_input.downcase == "one" || user_input == "1"
    start_game
-  when "[2] ☠ CHARACTER PROFILES ☠"
+ elsif user_input == "[2]" || user_input.downcase == "two" || user_input  == "2"
    character_profiles
-  when "[3] ☠ PLAYER PROFILE ☠"
+ elsif user_input == "[3]" || user_input.downcase == "three" || user_input  == "3"
    player_profile
-  when "[4] ☠ RESET ☠"
-   reset_menu
-  end
+ elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
+   reset
+ end
 end
 
 def begin_investigation
@@ -139,6 +131,7 @@ def start_game
   player_sex = gets.chomp
   create_player(player_name, player_sex.upcase)
   puts `clear`
+
   puts "Welcome Detective #{player_name}"
   puts ""
   puts "loading........";sleep 4;puts " \n"*10;puts `clear`
@@ -151,6 +144,7 @@ def start_game
   puts "loading........";sleep 15;puts `clear`
    #queue music
    begin_investigation
+
 end
 
 def intro
@@ -165,16 +159,17 @@ Unlike most evenings, this one was different.
 Why? Because on this particular evening, a murder had been commited.
 
 You are a detective, tasked with investigating this incident and finding the
-killer in order to serve justice."
+killer in order to serve justice.
 
-puts ""
+Do you accept this investigation and all associated risks?[y/n]"
 
-prompt = TTY::Prompt.new
-case prompt.select("Do you accept this investigation and all associated risks?", ["Yes","No"])
-when "Yes"
+
+user_choice = gets.chomp
+
+if user_choice.downcase == "yes"|| user_choice.downcase == "y"
  puts "Then continue forward... "
  loader
-when "No"
+elsif user_choice.downcase == "no" || user_choice.downcase == "n"
  puts "Then turn away..."
 end
 end

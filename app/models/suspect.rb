@@ -3,7 +3,7 @@ class Suspect < ActiveRecord::Base
 
   def self.speak_to_suspect(suspect)
   prompt = TTY::Prompt.new
-   if suspect == Suspect.all[1].name # Ana
+   if suspect == Suspect.all[1].name
      puts"\n";puts "loading........";sleep 18;puts `clear`
      puts "Anna: Detective #{Player.all.last.name.split[0]}, I understand you need to do your job. And I would like to find justice for my
       husband. But it is too late and I don't know if I can be of any help at this time. This is simply too much for me to handle right
@@ -205,7 +205,6 @@ class Suspect < ActiveRecord::Base
       end
 
     else
-    self.speak_to_suspect
+      self.speak_to_suspect(suspect)
   end
-
 end
