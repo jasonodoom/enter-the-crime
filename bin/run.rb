@@ -158,17 +158,16 @@ Unlike most evenings, this one was different.
 Why? Because on this particular evening, a murder had been commited.
 
 You are a detective, tasked with investigating this incident and finding the
-killer in order to serve justice.
+killer in order to serve justice."
 
-Do you accept this investigation and all associated risks?[y/n]"
+puts ""
 
-
-user_choice = gets.chomp
-
-if user_choice.downcase == "yes"|| user_choice.downcase == "y"
+prompt = TTY::Prompt.new
+case prompt.select("Do you accept this investigation and all associated risks?", ["Yes","No"])
+when "Yes"
  puts "Then continue forward... "
  loader
-elsif user_choice.downcase == "no" || user_choice.downcase == "n"
+when "No"
  puts "Then turn away..."
 end
 end
