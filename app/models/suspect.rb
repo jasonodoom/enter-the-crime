@@ -66,7 +66,7 @@ class Suspect < ActiveRecord::Base
      puts Rainbow("Nick: Yes, that is true.").red
      puts "\n"
 
-    case prompt.select("*Pick a Response Number*",["[1] Did you see anything worth noting on the body?", "[2] What was the first thing you did after discovering the body?"])
+    case prompt.select("*Pick a Response Number*", "[1] Did you see anything worth noting on the body?", "[2] What was the first thing you did after discovering the body?"])
 
     when "[1] Did you see anything worth noting on the body?"
         puts `clear`
