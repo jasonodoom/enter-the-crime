@@ -22,16 +22,18 @@ end
 
 
 def theme_music
+  track = fork{exec 'afplay', '../app/music/theme.wav'}
    loop do
-    track = fork{exec 'afplay', '../app/music/theme.wav'}
+    track
    sleep 666
+  end
 end
 
 def loader
   puts `clear`
-theme_music
-art
-menu
+  # theme_music
+  art
+  menu
 end
 
 def reset
@@ -137,7 +139,6 @@ def start_game
   player_sex = gets.chomp
   create_player(player_name, player_sex.upcase)
   puts `clear`
-
   puts "Welcome Detective #{player_name}"
   puts ""
   puts "loading........";sleep 4;puts " \n"*10;puts `clear`
@@ -150,7 +151,6 @@ def start_game
   puts "loading........";sleep 15;puts `clear`
    #queue music
    begin_investigation
-
 end
 
 def intro
