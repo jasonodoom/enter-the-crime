@@ -3,7 +3,7 @@ class CreateInterrogations < ActiveRecord::Migration[5.0]
     create_table :interrogations do |t|
       t.string :suspect_id
       t.string :room
-      t.boolean :complete, default: false
+      t.boolean :completed, default: false
     end
   end
 end

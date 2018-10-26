@@ -177,9 +177,7 @@ class Suspect < ActiveRecord::Base
         Interrogation.set_complete(3)
         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
         Interrogation.new_menu_if_0
-
       end
-
     end
 
    elsif suspect == Suspect.all[3].name

@@ -15,19 +15,21 @@ ActiveRecord::Schema.define(version: 20181022195420) do
   create_table "interrogations", force: :cascade do |t|
     t.string  "suspect_id"
     t.string  "room"
-    t.boolean "complete",   default: false
+    t.boolean "completed",  default: false
   end
 
   create_table "players", force: :cascade do |t|
-    t.string "name"
-    t.string "sex"
-    t.string "occupation",  default: "Detective"
-    t.string "description", default: "Just a stranger."
+    t.string  "name"
+    t.string  "sex"
+    t.string  "occupation",  default: "Detective"
+    t.string  "description", default: "Just a stranger."
+    t.boolean "guilty",      default: false
   end
 
   create_table "suspects", force: :cascade do |t|
     t.string  "name"
     t.string  "sex"
+    t.string  "status"
     t.string  "family_relationship"
     t.string  "description"
     t.boolean "guilty",              default: false

@@ -40,6 +40,8 @@ def reset_menu
      puts "Cleaning up....."
      reset
      Player.put_things_back
+   elsif user_confirmation.downcase == "n"
+     menu
    else
      puts "INVALID COMMAND"
      sleep 5;`clear`
@@ -49,9 +51,52 @@ def reset_menu
 end
 
 def character_profiles
-end
+  puts `clear`
+  Suspect.all.select do |suspect|
+    puts "-------------\n"
+    puts "Name: #{suspect.name}\n"
+    puts "Sex: #{suspect.sex}\n"
+    puts "Status: #{suspect.status}\n"
+    puts "Family Relationship: #{suspect.family_relationship}\n"
+    puts "Description: #{suspect.description}\n"
+    puts "Guilty?: #{suspect.guilty}\n"
+    puts "-------------"
+    puts "\n"
+  end
+  sleep 5; puts "Return to Main Menu?[y/n]"
+  user_response = gets.chomp
+  if user_response.downcase == "y"
+    loader
+  elsif user_response.downcase == "n"
+    puts `clear`
+  else
+    puts "INVALID COMMAND"
+    loader
+  end
+ end
 
 def player_profile
+  puts `clear`
+  Player.all.select do |player|
+    puts "-------------\n"
+    puts "Name: #{player.name}\n"
+    puts "Sex: #{player.sex}\n"
+    puts "Occupation: #{player.occupation}\n"
+    puts "Description: #{player.description}\n"
+    puts "Guilty?: #{player.guilty}\n"
+    puts "-------------"
+    puts "\n"
+  end
+  sleep 5; puts "Return to Main Menu?[y/n]"
+  user_response = gets.chomp
+  if user_response.downcase == "y"
+    loader
+  elsif user_response.downcase == "n"
+    puts `clear`
+  else
+     puts "INVALID COMMAND"
+    loader
+  end
 end
 
 def menu

@@ -5,6 +5,7 @@ class CreatePlayers < ActiveRecord::Migration[5.0]
       t.string :sex
       t.string :occupation, default: "Detective"
       t.string :description, default: "Just a stranger."
+      t.boolean :guilty, default: false
     end
   end
 end

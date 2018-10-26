@@ -31,13 +31,13 @@ class Interrogation < ActiveRecord::Base
    puts "\n"
    puts "You read her description in your notes:" + "\n #{Suspect.all[3].description}."
    puts "\n"
-   puts "She looks saddened and helpless. But you've been in this game for a long, long, long time."
+   puts "She looks sad and helpless. But you've been in this game for a long, long, long time."
    Suspect.speak_to_suspect(Suspect.all[3].name)
  end
 
  def self.set_complete(id)
    Interrogation.find_by(suspect_id: id).tap do |interrogation|
-   interrogation.complete = true
+   interrogation.completed = true
    interrogation.save
   end
  end
@@ -54,7 +54,7 @@ end
 
   puts "Choose a Room:
 
-    [1] ☠ #{ Interrogation.all[0].room} ☠
+    [1] ☠ #{Interrogation.all[0].room} ☠
     [2] ☠ #{Interrogation.all[1].room} ☠
     [3] ☠ #{Interrogation.all[2].room} ☠
   "
@@ -87,11 +87,11 @@ end
 end
 
  def self.new_menu_if_0
-   if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
+   if Interrogation.all[0].completed == true && Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
     self.no_avail
-  elsif  Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
+  elsif  Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
     self.no_avail
-  elsif Interrogation.all[1].complete == true
+  elsif Interrogation.all[1].completed == true
     puts "Choose a Room:
 
       [3] ☠ #{Interrogation.all[2].room} ☠
@@ -114,7 +114,7 @@ end
       puts `clear`
       self.new_menu_if_0
     end
-   elsif Interrogation.all[2].complete == true
+  elsif Interrogation.all[2].completed == true
      puts "Choose a Room:
 
        [2] ☠ #{Interrogation.all[1].room} ☠
@@ -166,11 +166,11 @@ end
  end
 
     def self.new_menu_if_1
-      if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
+      if Interrogation.all[0].completed == true && Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
         self.no_avail
-      elsif Interrogation.all[0].complete == true && Interrogation.all[2].complete == true
+      elsif Interrogation.all[0].completed == true && Interrogation.all[2].completed == true
          self.no_avail
-      elsif Interrogation.all[0].complete == true
+      elsif Interrogation.all[0].completed == true
         puts "Choose a Room:
 
           [3] ☠ #{Interrogation.all[2].room} ☠
@@ -184,7 +184,7 @@ end
               third_room = Interrogation.all[2]
               third_room.enter_room_three
            end
-      elsif  Interrogation.all[2].complete == true
+      elsif  Interrogation.all[2].completed == true
         puts "Choose a Room:
 
           [1] ☠ #{Interrogation.all[0].room} ☠
@@ -237,33 +237,29 @@ end
     end
 
     def self.new_menu_if_2
-      if Interrogation.all[0].complete == true && Interrogation.all[1].complete == true && Interrogation.all[2].complete == true
+      if Interrogation.all[0].completed == true && Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
         self.no_avail
-      elsif Interrogation.all[0].complete == true && Interrogation.all[1].complete == true
+      elsif Interrogation.all[0].completed == true && Interrogation.all[1].completed == true
          self.no_avail
-      elsif Interrogation.all[0].complete == true
+      elsif Interrogation.all[0].completed == true
         puts "Choose a Room:
 
-          [2] ☠ #{Interrogation.all[1].room} ☠
-        "
-        if room_choice_for_2.downcase == Interrogation.all[0].room.downcase || room_choice_for_2.downcase == "one" || room_choice_for_2 == "1"
+          [2] ☠ #{Interrogation.all[1].room} ☠"
+
+           room_choice_for_2 = gets.chomp
+
+        if room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice_for_2 == "2"
           puts `clear`
-          puts "Entering #{Interrogation.all[0].room}...."
+          puts "Entering #{Interrogation.all[1].room}...."
           sleep 8;puts `clear`
-          first_room = Interrogation.all[0]
-          first_room.enter_room_one
-        elsif room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice_for_2 == "2"
-          puts `clear`
-           puts "Entering #{Interrogation.all[1].room}...."
-           sleep 8;puts `clear`
-           second_room = Interrogation.all[1]
-           second_room.enter_room_one
+          second_room = Interrogation.all[1]
+          second_room.enter_room_two
         else
           puts "INVALID OPTION";sleep 5
           puts `clear`
           self.new_menu_if_2
-        end 
-      elsif Interrogation.all[1].complete == true
+        end
+      elsif Interrogation.all[1].completed == true
         puts "Choose a Room:
 
           [1] ☠ #{ Interrogation.all[0].room} ☠
@@ -276,12 +272,6 @@ end
           sleep 8;puts `clear`
           first_room = Interrogation.all[0]
           first_room.enter_room_one
-        elsif room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice_for_2 == "2"
-          puts `clear`
-           puts "Entering #{Interrogation.all[1].room}...."
-           sleep 8;puts `clear`
-           second_room = Interrogation.all[1]
-           second_room.enter_room_one
         else
           puts "INVALID OPTION";sleep 5
           puts `clear`
@@ -306,7 +296,7 @@ end
          puts "Entering #{Interrogation.all[1].room}...."
          sleep 8;puts `clear`
          second_room = Interrogation.all[1]
-         second_room.enter_room_one
+         second_room.enter_room_two
       else
         puts "INVALID OPTION";sleep 5
         puts `clear`
