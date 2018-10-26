@@ -22,10 +22,9 @@ end
 
 
 def theme_music
-  track = fork{exec 'afplay', '../app/music/theme.wav'}
-   loop do
-    track
-   sleep 666
+  loop do
+  pid = fork{exec `afplay`, '../app/music/theme.wav'}
+  sleep 666
   end
 end
 
@@ -103,6 +102,7 @@ def player_profile
 end
 
 def menu
+  # theme_music
   puts"
    MENU:
    [1] ☠ PLAY GAME ☠
@@ -150,12 +150,10 @@ def start_game
   puts ""
   puts ""
   puts "loading........";sleep 15;puts `clear`
-   #queue music
    begin_investigation
 end
 
 def intro
-  #queue music
 puts `clear`
 puts "It's a dark and stormy night. We find ourselves in an old Victorian home,
 somewhere in Brooklyn, New York.

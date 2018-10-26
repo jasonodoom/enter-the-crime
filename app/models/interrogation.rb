@@ -1,309 +1,211 @@
-class Interrogation < ActiveRecord::Base
- belongs_to :players
- belongs_to :suspects
+class Suspect < ActiveRecord::Base
+  has_many :interrogations
 
- def enter_room_one
-   puts "In the #{Interrogation.all[0].room} sits #{Suspect.all[2].name} awaiting questioning."
-   puts "\n"
-   puts "#{Suspect.all[2].name} is the #{Suspect.all[2].family_relationship} of the Cthulu family."
-   puts "\n"
-   puts "You read his description in your notes:" + "\n #{Suspect.all[2].description}."
-   puts "\n"
-   puts "He looks frustrated and unapproachable. But you've been in this game for a long time."
-   Suspect.speak_to_suspect(Suspect.all[2].name)
- end
-
- def enter_room_two
-   puts "In the #{Interrogation.all[1].room} sits #{Suspect.all[1].name} awaiting questioning."
-   puts "\n"
-   puts "#{Suspect.all[1].name} is the #{Suspect.all[1].family_relationship} of the Cthulu family."
-   puts "\n"
-   puts "You read her description in your notes:"  + "\n #{Suspect.all[1].description}."
-   puts "\n"
-   puts "She looks shaken and distraught. But you've been in this game for a long, long time."
-   Suspect.speak_to_suspect(Suspect.all[1].name)
- end
-
- def enter_room_three
-   puts "In the #{Interrogation.all[2].room} sits #{Suspect.all[3].name} awaiting questioning."
-   puts "\n"
-   puts "#{Suspect.all[3].name} is the #{Suspect.all[3].family_relationship} of the Cthulu family."
-   puts "\n"
-   puts "You read her description in your notes:" + "\n #{Suspect.all[3].description}."
-   puts "\n"
-   puts "She looks sad and helpless. But you've been in this game for a long, long, long time."
-   Suspect.speak_to_suspect(Suspect.all[3].name)
- end
-
- def self.set_complete(id)
-   Interrogation.find_by(suspect_id: id).tap do |interrogation|
-   interrogation.completed = true
-   interrogation.save
-  end
- end
-
-def self.no_avail
-  puts `clear`;puts "ALL INVESTIGATIONS HAVE BEEN COMPLETED";sleep 2;puts `clear`;puts "RETURNING TO HQ......";sleep 6;puts `clear`
-  Player.finale
-end
-
-
- def self.choose_room
-  puts "loading....";sleep 4;puts `clear`;puts "There are three rooms."
-  puts "In each room sits a memeber of the Cthulu family."
-
-  puts "Choose a Room:
-
-    [1] ☠ #{Interrogation.all[0].room} ☠
-    [2] ☠ #{Interrogation.all[1].room} ☠
-    [3] ☠ #{Interrogation.all[2].room} ☠
-  "
-  puts "What room do you want to enter?"
-  room_choice = gets.chomp
-
-  if room_choice.downcase == Interrogation.all[0].room.downcase || room_choice.downcase == "one" || room_choice == "1"
-    puts `clear`
-    puts "Entering #{Interrogation.all[0].room}...."
-    sleep 8;puts `clear`
-    first_room = Interrogation.all[0]
-    first_room.enter_room_one
-  elsif room_choice.downcase == Interrogation.all[1].room.downcase || room_choice.downcase == "one" || room_choice == "2"
-    puts `clear`
-    puts "Entering #{Interrogation.all[1].room}...."
-    sleep 8;puts `clear`
-    second_room = Interrogation.all[1]
-    second_room.enter_room_two
-  elsif room_choice.downcase == Interrogation.all[2].room.downcase || room_choice.downcase == "three" || room_choice == "3"
-    puts `clear`
-    puts "Entering #{Interrogation.all[2].room}...."
-    sleep 8;puts `clear`
-    third_room = Interrogation.all[2]
-    third_room.enter_room_three
-  else
-    puts "INVALID OPTION"
-    sleep 5;puts `clear`
-    self.choose_room
-  end
-end
-
- def self.new_menu_if_0
-   if Interrogation.all[0].completed == true && Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
-    self.no_avail
-  elsif  Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
-    self.no_avail
-  elsif Interrogation.all[1].completed == true
-    puts "Choose a Room:
-
-      [3] ☠ #{Interrogation.all[2].room} ☠
-    "
-    room_choice_for_0 = gets.chomp
-    if room_choice_for_0.downcase == Interrogation.all[1].room.downcase ||  room_choice_for_0.downcase == "two" ||  room_choice_for_0.downcase == "2"
-      puts `clear`
-      puts "Entering #{Interrogation.all[1].room}...."
-      sleep 8;puts `clear`
-      second_room = Interrogation.all[1]
-      second_room.enter_room_two
-    elsif room_choice_for_0.downcase == Interrogation.all[2].room.downcase ||  room_choice_for_0.downcase == "three" || room_choice_for_0.downcase == "3"
-      puts `clear`
-      puts "Entering #{Interrogation.all[2].room}...."
-      sleep 8;puts `clear`
-      third_room = Interrogation.all[2]
-      third_room.enter_room_three
-    else
-      puts "INVALID OPTION"; sleep 5
-      puts `clear`
-      self.new_menu_if_0
-    end
-  elsif Interrogation.all[2].completed == true
-     puts "Choose a Room:
-
-       [2] ☠ #{Interrogation.all[1].room} ☠
+  def self.speak_to_suspect(suspect)
+  prompt = TTY::Prompt.new
+   if suspect == Suspect.all[1].name # Ana
+     puts"\n";puts "loading........";sleep 18;puts `clear`
+     puts "Anna: Detective #{Player.all.last.name.split[0]}, I understand you need to do your job. And I would like to find justice for my
+      husband. But it is too late and I don't know if I can be of any help at this time. This is simply too much for me to handle right
+      now."
+     puts "Detective #{Player.all.last.name.split[0]}: I understand Mrs. Cthulu but the law is the law. The quicker we get this out of the way,
+     the quicker you will have some closure.
      "
-      room_choice_for_0 = gets.chomp
-      if room_choice_for_0.downcase == Interrogation.all[1].room.downcase ||  room_choice_for_0.downcase == "two" ||  room_choice_for_0.downcase == "2"
-        puts `clear`
-        puts "Entering #{Interrogation.all[1].room}...."
-        sleep 8;puts `clear`
-        second_room = Interrogation.all[1]
-        second_room.enter_room_two
-      elsif room_choice_for_0.downcase == Interrogation.all[2].room.downcase ||  room_choice_for_0.downcase == "three" || room_choice_for_0.downcase == "3"
-        puts `clear`
-        puts "Entering #{Interrogation.all[2].room}...."
-        sleep 8;puts `clear`
-        third_room = Interrogation.all[2]
-        third_room.enter_room_three
-      else
-        puts "INVALID OPTION"; sleep 5
-        puts `clear`
-        self.new_menu_if_0
-      end
-   else
-    puts "Choose a Room:
+     puts "Anna: Fine. Then ask what you want to know and please leave."
+     puts "\n"
 
-      [2] ☠ #{Interrogation.all[1].room} ☠
-      [3] ☠ #{Interrogation.all[2].room} ☠
+     case prompt.select("*Pick a Response Number*",["[1] How was your relationship with your husband?","[2] Where were you the night your husband was murdered?"])
+      when "[1] How was your relationship with your husband?"
+         puts `clear`
+         puts Rainbow("Anna: Steven cheated on me. We've been married for 45 years and he cheated on me. More than once. I'd forgive him but he'd only go back and do it again. He believed that he was somehow allowed to cheat on me. Eventually, I stopped forgiving him. But I didn't want to tear my family apart. So I stayed despite this and didn't seek a divorce. His death is his karma. Serves him right. I hope he rots in Hell.").blue
+       when "[2] Where were you the night your husband was murdered?"
+         puts `clear`
+         puts Rainbow("Anna: I was in the kitchen, making dinner.").blue
+       end
 
-    "
-     room_choice_for_0 = gets.chomp
-    if room_choice_for_0.downcase == Interrogation.all[1].room.downcase ||  room_choice_for_0.downcase == "two" ||  room_choice_for_0.downcase == "2"
-      puts `clear`
-      puts "Entering #{Interrogation.all[1].room}...."
-      sleep 8;puts `clear`
-      second_room = Interrogation.all[1]
-      second_room.enter_room_two
-    elsif room_choice_for_0.downcase == Interrogation.all[2].room.downcase ||  room_choice_for_0.downcase == "three" || room_choice_for_0.downcase == "3"
-      puts `clear`
-      puts "Entering #{Interrogation.all[2].room}...."
-      sleep 8;puts `clear`
-      third_room = Interrogation.all[2]
-      third_room.enter_room_three
-    else
-      puts "INVALID OPTION"; sleep 5
-      puts `clear`
-      self.new_menu_if_0
+     puts "\n"
+     case prompt.select("*Pick a Response Number*",["[1] ...............","[2] I understand you're grieving Mrs. Cthulu, but your husband was murdered.","[3] And what were you doing during the murder?"])
+
+        when "[1] ..............."
+         puts `clear`
+         puts Rainbow("Anna: Well? Are we done?").blue
+         sleep 5
+         puts "Detective #{Player.all.last.name.split[0]}: Yes, we're done. Thank you for your help Mrs. Cthulu. Feel better."
+         puts""
+         puts""
+         Interrogation.set_complete(2)
+         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+         Interrogation.new_menu_if_1
+       when  "[2] I understand you're grieving Mrs. Cthulu, but your husband was murdered."
+         puts `clear`
+         puts Rainbow("Anna: Precisely. MY HUSBAND. So don't preach at me! Are we done or are going to keep reminding me of the obvious?").blue
+         sleep 5
+         puts "Detective #{Player.all.last.name.split[0]}: I didn't mean to upset you. We're done. I thank you for your time."
+         puts""
+         puts""
+         Interrogation.set_complete(2)
+         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+         Interrogation.new_menu_if_1
+       when "[3] And what were you doing during the murder?"
+         puts `clear`
+         puts Rainbow("Anna: I was in the kitchen alone that evening.").blue
+         sleep 5
+         puts""
+         puts""
+         Interrogation.set_complete(2)
+         puts "Detective #{Player.all.last.name.split[0]}: Thank you for the information Mrs. Cthulu, please have a nice day."
+         sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+         Interrogation.new_menu_if_1
+       end
+
+
+   elsif suspect == Suspect.all[2].name
+     puts "\n";puts "loading........";sleep 18;puts `clear`
+     puts Rainbow("Nick: Good morning Detective #{Player.all.last.name.split[0]}. How can I help?").red
+     puts "Detective #{Player.all.last.name.split[0]}: I was told you were the one that found the body."
+     puts Rainbow("Nick: Yes, that is true.").red
+     puts "\n"
+
+    case prompt.select("*Pick a Response Number*",["[1] Did you see anything worth noting on the body?", "[2] What was the first thing you did after discovering the body?"])
+
+    when "[1] Did you see anything worth noting on the body?"
+        puts `clear`
+        puts Rainbow("Nick: Nothing in particular... I was just shocked.").red
+    when "[2] What was the first thing you did after discovering the body?"
+        puts `clear`
+        puts Rainbow("Nick: I called for my family... my sister and mother quickly responded.").red
     end
-  end
- end
 
-    def self.new_menu_if_1
-      if Interrogation.all[0].completed == true && Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
-        self.no_avail
-      elsif Interrogation.all[0].completed == true && Interrogation.all[2].completed == true
-         self.no_avail
-      elsif Interrogation.all[0].completed == true
-        puts "Choose a Room:
+    puts "\n"
+    case prompt.select("*Pick a Response Number*",["[1] Was there any strange behavior by your family in the days leading up to today?","[2] Are you sure all you did was \"find\" the body?"])
 
-          [3] ☠ #{Interrogation.all[2].room} ☠
-          "
-           room_choice_for_2 = gets.chomp
+      when "[2] Are you sure all you did was \"find\" the body?"
+      puts `clear`
+      puts Rainbow("Nick: ARE YOU ACCUSING ME OF MURDERING MY OWN FATHER?").red
+      puts "\n"
+        case prompt.select("*Pick a Response Number*",["[1] Yes!","[2] Not yet..."])
 
-           if room_choice_for_2.downcase == Interrogation.all[2].room.downcase || room_choice_for_2.downcase == "three" || room_choice_for_2.downcase == "3"
-              puts `clear`
-              puts "Entering #{Interrogation.all[2].room}...."
-              sleep 8;puts `clear`
-              third_room = Interrogation.all[2]
-              third_room.enter_room_three
-           end
-      elsif  Interrogation.all[2].completed == true
-        puts "Choose a Room:
+        when "[1] Yes!"
+        puts `clear`
+        puts Rainbow("Nick: THEN WE ARE DONE HERE DETECTIVE!").red
+        puts ""
+        puts ""
+        Interrogation.set_complete(3)
+        sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+        Interrogation.new_menu_if_0
+        when "[2] Not yet..."
+        puts `clear`
+        puts Rainbow("Nick: Okay...").red
+        puts "\n"
+        end
 
-          [1] ☠ #{Interrogation.all[0].room} ☠
-          "
-           room_choice_for_1 = gets.chomp
-           if room_choice_for_1.downcase == Interrogation.all[0].room.downcase ||room_choice_for_1.downcase == "one" || room_choice_for_1.downcase == "1"
-             puts `clear`
-             puts "Entering #{Interrogation.all[0].room}...."
-             sleep 8;puts `clear`
-             first_room = Interrogation.all[0]
-             first_room.enter_room_one
-           elsif  room_choice_for_1.downcase == Interrogation.all[2].room.downcase || room_choice_for_1.downcase == "three" || room_choice_for_1.downcase == "3"
-              puts `clear`
-              puts "Entering #{Interrogation.all[2].room}...."
-              sleep 8;puts `clear`
-              third_room = Interrogation.all[2]
-              third_room.enter_room_three
-           else
-             puts "INVALID OPTION";sleep 5
-             puts `clear`;Interrogation.all[0]
-             self.new_menu_if_1
-           end
-      else
-        puts "Choose a Room:
+        case prompt.select("*Pick a Response Number*",["[1] So what were you watching on TV before the murder occured?","[2] Do you know anyone who may be capable of this crime?"])
 
-          [1] ☠ #{Interrogation.all[0].room} ☠
-          [3] ☠ #{Interrogation.all[2].room} ☠
-
-        "
-          room_choice_for_1 = gets.chomp
-
-          if room_choice_for_1.downcase == Interrogation.all[0].room.downcase ||room_choice_for_1.downcase == "one" || room_choice_for_1.downcase == "1"
-            puts `clear`
-            puts "Entering #{Interrogation.all[0].room}...."
-            sleep 8;puts `clear`
-            first_room = Interrogation.all[0]
-            first_room.enter_room_one
-          elsif  room_choice_for_1.downcase == Interrogation.all[2].room.downcase || room_choice_for_1.downcase == "three" || room_choice_for_1.downcase == "3"
-             puts `clear`
-             puts "Entering #{Interrogation.all[2].room}...."
-             sleep 8;puts `clear`
-             third_room = Interrogation.all[2]
-             third_room.enter_room_three
-          else
-            puts "INVALID OPTION";sleep 5
-            puts `clear`;Interrogation.all[0]
-            self.new_menu_if_1
+          when "[1] So what were you watching on TV before the murder occured?"
+          puts `clear`
+          puts Rainbow("Nick: I'M FED UP WITH YOU SUSPECTING ME, PLEASE LEAVE!").red
+          puts ""
+          puts ""
+          Interrogation.set_complete(3)
+          sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+          Interrogation.new_menu_if_0
+          when "[2] Do you know anyone who may be capable of this crime?"
+          puts `clear`
+          puts Rainbow("Nick: I apologize detective, but I'm tired of your questioning. Leave me to mourn...").red
+          puts ""
+          puts ""
+          Interrogation.set_complete(3)
+          sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+          Interrogation.new_menu_if_0
           end
+
+      when "[1] So what were you watching on TV before the murder occured?"
+      puts `clear`
+      puts Rainbow("Nick: Honestly, my parents have been fighting, but that isn't \"strange behavior\"... Life has been this way for the last few years.").red
+      puts "\n"
       end
-    end
 
-    def self.new_menu_if_2
-      if Interrogation.all[0].completed == true && Interrogation.all[1].completed == true && Interrogation.all[2].completed == true
-        self.no_avail
-      elsif Interrogation.all[0].completed == true && Interrogation.all[1].completed == true
-         self.no_avail
-      elsif Interrogation.all[0].completed == true
-        puts "Choose a Room:
-
-          [2] ☠ #{Interrogation.all[1].room} ☠"
-
-           room_choice_for_2 = gets.chomp
-
-        if room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice_for_2 == "2"
-          puts `clear`
-          puts "Entering #{Interrogation.all[1].room}...."
-          sleep 8;puts `clear`
-          second_room = Interrogation.all[1]
-          second_room.enter_room_two
-        else
-          puts "INVALID OPTION";sleep 5
-          puts `clear`
-          self.new_menu_if_2
-        end
-      elsif Interrogation.all[1].completed == true
-        puts "Choose a Room:
-
-          [1] ☠ #{ Interrogation.all[0].room} ☠
-
-        "
-        room_choice_for_2 = gets.chomp
-        if room_choice_for_2.downcase == Interrogation.all[0].room.downcase || room_choice_for_2.downcase == "one" || room_choice_for_2 == "1"
-          puts `clear`
-          puts "Entering #{Interrogation.all[0].room}...."
-          sleep 8;puts `clear`
-          first_room = Interrogation.all[0]
-          first_room.enter_room_one
-        else
-          puts "INVALID OPTION";sleep 5
-          puts `clear`
-          self.new_menu_if_2
-        end
-      else
-       puts "Choose a Room:
-
-        [1] ☠ #{ Interrogation.all[0].room} ☠
-        [2] ☠ #{Interrogation.all[1].room} ☠
-      "
-      room_choice_for_2 = gets.chomp
-
-      if room_choice_for_2.downcase == Interrogation.all[0].room.downcase || room_choice_for_2.downcase == "one" || room_choice_for_2 == "1"
-        puts `clear`
-        puts "Entering #{Interrogation.all[0].room}...."
-        sleep 8;puts `clear`
-        first_room = Interrogation.all[0]
-        first_room.enter_room_one
-      elsif room_choice_for_2.downcase == Interrogation.all[1].room.downcase || room_choice_for_2.downcase == "two" || room_choice_for_2 == "2"
-        puts `clear`
-         puts "Entering #{Interrogation.all[1].room}...."
-         sleep 8;puts `clear`
-         second_room = Interrogation.all[1]
-         second_room.enter_room_two
-      else
-        puts "INVALID OPTION";sleep 5
-        puts `clear`
-        self.new_menu_if_2
+      case prompt.select("*Pick a Response Number*",["[1] And why is that?","[2] And how did that make you feel?"])
+      when "[1] And why is that?"
+      puts Rainbow("Nick: Father hasn't been very invested in the family lately. Around the time I began college, so I didn't feel the affect much... Mom tells me he became distant and she... she wasn't happy.").red
+      when "[1] And why is that?"
+      puts Ranbow("Nick: I hated it... he was very distance and my entire family suffered because of it").red
       end
-    end
+
+      case prompt.select("*Pick a Response Number*",["[1] Do you believe your mom could be capable of...?","[2] Why do you believe he became distant?"])
+      when "[1] Do you believe your mom could be capable of...?"
+        puts `clear`
+        puts Rainbow("Nick: No! My mother wouldn't do that. Ever. Sorry detective, I know nothing else.").red
+        puts ""
+        puts ""
+        Interrogation.set_complete(3)
+        sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+        Interrogation.new_menu_if_0
+      when "[2] Why do you believe he became distant?"
+        puts `clear`
+        puts Rainbow("Nick: Mom suspected infedility but... I don't know. Leave me to mourn, detective").red
+        puts ""
+        puts ""
+        Interrogation.set_complete(3)
+        sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+        Interrogation.new_menu_if_0
+      end
+
+    elsif suspect == Suspect.all[3].name
+     puts "\n";puts "loading........";sleep 18;puts `clear`
+     puts Rainbow("Jodie: Hello Detective...").yellow
+     puts "\n"
+
+     case prompt.select("*Pick a Response Number*",["[1] Good afternoon, Is there anything you can tell me about your mother’s relationship with your father?","[2] Good afternoon, Is there anything you can tell me about your brother's relationship with you father?"])
+     when "[1] Good afternoon, Is there anything you can tell me about your mother’s relationship with your father?"
+         puts `clear`
+         puts Rainbow("Jodie: Mom and dad fight a lot but don't even think about it! My mother would never do this.").yellow
+      when "[2] Good afternoon, Is there anything you can tell me about your brother's relationship with you father?"
+         puts `clear`
+         puts Rainbow("Jodie: Nick and dad were close... but they don't speak much now that he's in school.").yellow
+      end
+
+      case prompt.select("*Pick a Response Number*",["[1] When your parents disagreed, what kind of disagreements would they have?","[2] Were you close to your dad growing up?"])
+      when "[1] When your parents disagreed, what kind of disagreements would they have?"
+           puts `clear`
+           puts Rainbow("Jodie: Nothing specific... they just lost that spark, ya know?").yellow
+      when "[2] Were you close to your dad growing up?"
+           puts `clear`
+           puts Rainbow("Jodie: We were all close... a few years, everything changed. My brother went to school and my parents kinda drifted apart.").yellow
+      end
+
+        case prompt.select("*Pick a Response Number*",["[1] Any specific reason your parents would \"drift\"?","[2] So what were you doing in the kitchen?"])
+         when "[1] Any specific reason your parents would \"drift\"?"
+             puts `clear`
+             puts Rainbow("Jodie: I don't know. I don't think so.").yellow
+           when "[2] So what were you doing in the kitchen?"
+             puts `clear`
+             puts Rainbow("Jodie: Making pasta for dinner.").yellow
+           end
+
+           case prompt.select("*Pick a Response Number",["[1] Have you or anybody in your family suspected your father of infedelity?","[2] Are you sure you were in the kitchen?"])
+           when "[1] Have you or anybody in your family suspected your father of infedelity?"
+               puts `clear`
+               puts Rainbow("Jodie: My brother and I had… We would never tell mother though.").yellow
+               puts Rainbow("Jodie: We didn’t want to break her heart… sorry detective, I know nothing else…").yellow
+               puts ""
+               puts ""
+               Interrogation.set_complete(4)
+               sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+               Interrogation.new_menu_if_2
+             when "[2] Are you sure you were in the kitchen?"
+               puts `clear`
+               puts Rainbow("Jodie: Are you suspecting me of… leave now, detective!").yellow
+               puts ""
+               puts ""
+               Interrogation.set_complete(4)
+               sleep 2;puts "\n";puts "loading........"; sleep 10; puts `clear`
+               Interrogation.new_menu_if_2
+             end
+      end
+
+    else
+    self.speak_to_suspect
   end
-
 
 end
