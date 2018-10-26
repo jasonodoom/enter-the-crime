@@ -20,17 +20,8 @@ EOS
 print art
 end
 
-
-def theme_music
-  loop do
-  pid = fork{exec `afplay`, '../app/music/theme.wav'}
-  sleep 666
-  end
-end
-
 def loader
   puts `clear`
-  # theme_music
   art
   menu
 end
@@ -102,7 +93,6 @@ def player_profile
 end
 
 def menu
-  # theme_music
   puts"
    MENU:
    [1] ☠ PLAY GAME ☠
