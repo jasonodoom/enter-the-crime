@@ -205,7 +205,7 @@ class Suspect < ActiveRecord::Base
       end
 
     else
-    self.speak_to_suspect
+    self.speak_to_suspect(suspect)
   end
 
 end
