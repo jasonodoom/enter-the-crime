@@ -20,10 +20,27 @@ EOS
 print art
 end
 
+<<<<<<< HEAD
 def loader
   puts `clear`
 art
 menu
+=======
+
+def theme_music
+  track = fork{exec 'afplay', '../app/music/theme.wav'}
+   loop do
+    track
+   sleep 666
+  end
+end
+
+def loader
+  puts `clear`
+  # theme_music
+  art
+  menu
+>>>>>>> testing music
 end
 
 def reset
@@ -129,7 +146,6 @@ def start_game
   player_sex = gets.chomp
   create_player(player_name, player_sex.upcase)
   puts `clear`
-
   puts "Welcome Detective #{player_name}"
   puts ""
   puts "loading........";sleep 4;puts " \n"*10;puts `clear`
@@ -141,7 +157,6 @@ def start_game
   puts ""
   puts "loading........";sleep 15;puts `clear`
    begin_investigation
-
 end
 
 def intro
