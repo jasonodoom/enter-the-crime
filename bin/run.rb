@@ -38,9 +38,11 @@ end
 >>>>>>> 4a3a9b261d148213d6c1690ff06d60836d3e7ec9
 
 def theme_music
+  track = fork{exec 'afplay', '../app/music/theme.wav'}
    loop do
-    track = fork{exec 'afplay', '../app/music/theme.wav'}
+    track
    sleep 666
+  end
 end
 
 <<<<<<< HEAD
@@ -51,6 +53,7 @@ end
 <<<<<<< Updated upstream
 def loader
   puts `clear`
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 theme_music
@@ -98,6 +101,11 @@ def theme_music
     track
    sleep 666
   end
+=======
+  # theme_music
+  art
+  menu
+>>>>>>> testing music
 end
 
 def loader
