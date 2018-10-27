@@ -20,8 +20,19 @@ EOS
 print art
 end
 
+
+def theme_music
+   loop do
+    track = fork{exec 'afplay', '../app/music/theme.wav'}
+   sleep 666
+end
+
 def loader
   puts `clear`
+<<<<<<< HEAD
+=======
+theme_music
+>>>>>>> testing music
 art
 menu
 end
