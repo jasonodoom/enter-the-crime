@@ -21,7 +21,10 @@ print art
 end
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -31,6 +34,7 @@ def theme_music
    sleep 666
 end
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 def loader
   puts `clear`
@@ -45,12 +49,17 @@ def loader
 <<<<<<< HEAD
 >>>>>>> 3619370cba3aa6569d918f66f790928684f117f7
 =======
+=======
+>>>>>>> Stashed changes
 def loader
   puts `clear`
 <<<<<<< HEAD
 =======
 theme_music
 >>>>>>> testing music
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 art
 menu
