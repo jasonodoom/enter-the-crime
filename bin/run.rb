@@ -22,7 +22,10 @@ end
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -34,6 +37,7 @@ def theme_music
    sleep 666
 end
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 def loader
@@ -51,6 +55,8 @@ def loader
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 def loader
   puts `clear`
 <<<<<<< HEAD
@@ -58,6 +64,9 @@ def loader
 theme_music
 >>>>>>> testing music
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
