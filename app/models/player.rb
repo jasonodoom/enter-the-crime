@@ -1,13 +1,6 @@
 class Player < ActiveRecord::Base
   has_many :interrogations
 
-def self.make_player_not_guilty
-  player_id = Player.all.last.id
-  Player.find_by(id: player_id).tap do |player|
-    player.guilty = false
-    player.save
-  end
-end
 
 def self.put_things_back
   ids = [2,3,4]
@@ -17,13 +10,12 @@ def self.put_things_back
       interrogation.save
     end
     ids.each do |id|
-    Suspect.find_by(id: ids).tap do |suspect|
+    Suspect.find_by(id: id).tap do |suspect|
       suspect.guilty = false
       suspect.save
     end
   end
-end   
-  self.make_player_not_guilty
+end
 end
 
 def self.outro
@@ -47,7 +39,6 @@ def self.outro
 EOS
 print fin
 self.put_things_back
-self.make_player_not_guilty
 sleep 11
 puts `clear`
 art = <<-EOS
