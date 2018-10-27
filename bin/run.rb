@@ -20,7 +20,10 @@ EOS
 print art
 end
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 
 def theme_music
    loop do
@@ -28,6 +31,7 @@ def theme_music
    sleep 666
 end
 
+<<<<<<< Updated upstream
 def loader
   puts `clear`
 <<<<<<< HEAD
@@ -40,6 +44,14 @@ def loader
   puts `clear`
 <<<<<<< HEAD
 >>>>>>> 3619370cba3aa6569d918f66f790928684f117f7
+=======
+def loader
+  puts `clear`
+<<<<<<< HEAD
+=======
+theme_music
+>>>>>>> testing music
+>>>>>>> Stashed changes
 art
 menu
 =======
