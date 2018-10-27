@@ -22,7 +22,6 @@ end
 
 def loader
   puts `clear`
-  #queu theme music
 art
 menu
 end
@@ -141,13 +140,11 @@ def start_game
   puts ""
   puts ""
   puts "loading........";sleep 15;puts `clear`
-   #queue music
    begin_investigation
 
 end
 
 def intro
-  #queue music
 puts `clear`
 puts "It's a dark and stormy night. We find ourselves in an old Victorian home,
 somewhere in Brooklyn, New York.
