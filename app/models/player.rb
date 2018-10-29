@@ -104,7 +104,7 @@ def self.finale
        She made this easy."
         self.make_guilty(2)
         puts `clear`;puts "ANNA CTHULU IS GUILTY! SHE HAS BEEN ARRESTED!";sleep 5
-       self.outro
+        self.outro
      elsif player_response == "3"
         puts `clear`
        puts "Jodie had told me she was in the kitchen the night of the murder which didn't add up to what her mother had said. "

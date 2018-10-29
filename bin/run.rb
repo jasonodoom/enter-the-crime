@@ -20,104 +20,10 @@ EOS
 print art
 end
 
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> 4a3a9b261d148213d6c1690ff06d60836d3e7ec9
-
-def theme_music
-  track = fork{exec 'afplay', '../app/music/theme.wav'}
-   loop do
-    track
-   sleep 666
-  end
-end
-
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 def loader
   puts `clear`
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-theme_music
->>>>>>> testing music
-=======
-<<<<<<< HEAD
-def loader
-  puts `clear`
-<<<<<<< HEAD
->>>>>>> 3619370cba3aa6569d918f66f790928684f117f7
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> 4a3a9b261d148213d6c1690ff06d60836d3e7ec9
-def loader
-  puts `clear`
-<<<<<<< HEAD
-=======
-theme_music
->>>>>>> testing music
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
->>>>>>> 4a3a9b261d148213d6c1690ff06d60836d3e7ec9
-art
-menu
-=======
-
-def theme_music
-  track = fork{exec 'afplay', '../app/music/theme.wav'}
-   loop do
-    track
-   sleep 666
-  end
-=======
-  # theme_music
   art
   menu
->>>>>>> testing music
-end
-
-def loader
-  puts `clear`
-  # theme_music
-  art
-  menu
->>>>>>> testing music
-=======
-  art
-  menu
->>>>>>> ffa22b744a8cf8e0721d615877650f3a3536628d
 end
 
 def reset
@@ -187,25 +93,18 @@ def player_profile
 end
 
 def menu
-  puts"
-   MENU:
-   [1] ☠ PLAY GAME ☠
-   [2] ☠ CHARACTER PROFILES ☠
-   [3] ☠ PLAYER PROFILE ☠
-   [4] ☠ RESET ☠
-   [5] ☠ QUIT ☠
-  "
-  puts "Please choose a menu option: [1][2][3][4][5]"
-  user_input = gets.chomp
- if user_input == "[1]" || user_input.downcase == "one" || user_input == "1"
+  prompt = TTY::Prompt.new
+  puts ""
+  case prompt.select("Please choose a menu option: [1][2][3][4][5]",["[1] ☠ PLAY GAME ☠","[2] ☠ CHARACTER PROFILES ☠","[3] ☠ PLAYER PROFILE ☠","[4] ☠ RESET ☠","[5] ☠ QUIT ☠"])
+  when "[1] ☠ PLAY GAME ☠"
    start_game
- elsif user_input == "[2]" || user_input.downcase == "two" || user_input  == "2"
+  when "[2] ☠ CHARACTER PROFILES ☠"
    character_profiles
- elsif user_input == "[3]" || user_input.downcase == "three" || user_input  == "3"
+  when "[3] ☠ PLAYER PROFILE ☠"
    player_profile
- elsif user_input == "[4]" || user_input.downcase == "four" || user_input  == "4"
-   reset
- end
+  when "[4] ☠ RESET ☠"
+   reset_menu
+  end
 end
 
 def begin_investigation
@@ -248,17 +147,17 @@ Unlike most evenings, this one was different.
 Why? Because on this particular evening, a murder had been commited.
 
 You are a detective, tasked with investigating this incident and finding the
-killer in order to serve justice.
+killer in order to serve justice."
 
-Do you accept this investigation and all associated risks?[y/n]"
+puts ""
 
 
-user_choice = gets.chomp
-
-if user_choice.downcase == "yes"|| user_choice.downcase == "y"
+prompt = TTY::Prompt.new
+case prompt.select("Do you accept this investigation and all associated risks?", ["Yes","No"])
+when "Yes"
  puts "Then continue forward... "
  loader
-elsif user_choice.downcase == "no" || user_choice.downcase == "n"
+when "No"
  puts "Then turn away..."
 end
 end
